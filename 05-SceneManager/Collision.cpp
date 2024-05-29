@@ -3,7 +3,12 @@
 
 #include "debug.h"
 
-#define BLOCK_PUSH_FACTOR 0.4f
+#define BLOCK_PUSH_FACTOR 0.4f\
+
+int CCollisionEvent::WasCollided() {
+	return
+		t >= 0.0f && t <= 1.0f && obj->IsMarioOnTop(nx, ny) == 1;
+}
 
 CCollision* CCollision::__instance = NULL;
 
