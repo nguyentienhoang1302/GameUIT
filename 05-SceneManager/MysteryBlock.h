@@ -5,15 +5,15 @@
 #include "Animations.h"
 
 
-#define PIPE_WIDTH 16
-#define PIPE_BBOX_WIDTH 16
-#define PIPE_BBOX_HEIGHT 16
+#define MBLOCK_WIDTH 16
+#define MBLOCK_BBOX_WIDTH 16
+#define MBLOCK_BBOX_HEIGHT 16
 
-class CPipe : public CGameObject {
+class CMBlock : public CGameObject {
 protected:
 	int aniId;
 public:
-	CPipe(float x, float y, int aniId) : CGameObject(x, y) {
+	CMBlock(float x, float y, int aniId) : CGameObject(x, y) {
 		this->aniId = aniId;
 	}
 	void Render();

@@ -87,10 +87,13 @@
     <ClCompile Include="Cloud.cpp">
       <Filter>Backgorund</Filter>
     </ClCompile>
-    <ClCompile Include="ColorBlock.cpp">
-      <Filter>Backgorund</Filter>
-    </ClCompile>
     <ClCompile Include="Pipe.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MysteryBlock.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorBlock.cpp">
       <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
@@ -170,10 +173,13 @@
     <ClInclude Include="Cloud.h">
       <Filter>Backgorund</Filter>
     </ClInclude>
-    <ClInclude Include="ColorBlock.h">
-      <Filter>Backgorund</Filter>
-    </ClInclude>
     <ClInclude Include="Pipe.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MysteryBlock.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorBlock.h">
       <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>

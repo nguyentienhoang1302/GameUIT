@@ -9,6 +9,8 @@
 #include "Cloud.h"
 #include "Tree.h"
 #include "ColorBlock.h"
+#include "Pipe.h"
+#include "MysteryBlock.h"
 //#include "Koopas.h"
 
 
