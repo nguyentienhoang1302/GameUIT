@@ -122,6 +122,13 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_GROUND1: obj = new CGround1(x, y); break;
 	case OBJECT_TYPE_TREELEFT: obj = new CTreeLeft(x, y); break;
 
+	case OBJECT_TYPE_TREE:
+	{
+		int aniId = (int)atoi(tokens[3].c_str());
+		obj = new CTree(x, y, aniId);
+		break;
+	}
+
 	case OBJECT_TYPE_PLATFORM:
 	{
 
@@ -270,7 +277,11 @@ void CPlayScene::Update(DWORD dt)
 void CPlayScene::Render()
 {
 	for (int i = 0; i < objects.size(); i++)
-		objects[i]->Render();
+		if (objects[i] != player)
+			objects[i]->Render();
+
+	if (player)
+		player->Render();
 }
 
 /*

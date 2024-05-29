@@ -8,6 +8,7 @@
 #include "Goomba.h"
 #include "Ground1.h"
 #include "TreeLeft.h"
+#include "Tree.h"
 //#include "Koopas.h"
 
 
