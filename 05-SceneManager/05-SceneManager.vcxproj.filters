@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Backgorund">
+      <UniqueIdentifier>{a45458f3-29b3-44b9-8046-e6ed5fb30791}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{3865c585-f667-4223-b5b4-ef3d2803f821}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -75,14 +81,17 @@
     <ClCompile Include="Portal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ground1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Tree.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Backgorund</Filter>
     </ClCompile>
-    <ClCompile Include="TreeLeft.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Cloud.cpp">
+      <Filter>Backgorund</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorBlock.cpp">
+      <Filter>Backgorund</Filter>
+    </ClCompile>
+    <ClCompile Include="Pipe.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,14 +164,17 @@
     <ClInclude Include="Portal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Ground1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Tree.h">
-      <Filter>Header Files</Filter>
+      <Filter>Backgorund</Filter>
     </ClInclude>
-    <ClInclude Include="TreeLeft.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Cloud.h">
+      <Filter>Backgorund</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorBlock.h">
+      <Filter>Backgorund</Filter>
+    </ClInclude>
+    <ClInclude Include="Pipe.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -38,9 +38,9 @@ HOW TO INSTALL Microsoft.DXSDK.D3DX
 #include "Goomba.h"
 #include "Coin.h"
 #include "Platform.h"
-#include "Ground1.h"
 #include "Tree.h"
-#include "TreeLeft.h"
+#include "Cloud.h"
+#include "ColorBlock.h"
 
 #include "SampleKeyEventHandler.h"
 

@@ -119,13 +119,24 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_GOOMBA: obj = new CGoomba(x,y); break;
 	case OBJECT_TYPE_BRICK: obj = new CBrick(x,y); break;
 	case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
-	case OBJECT_TYPE_GROUND1: obj = new CGround1(x, y); break;
-	case OBJECT_TYPE_TREELEFT: obj = new CTreeLeft(x, y); break;
+	case OBJECT_TYPE_CLOUD:
+	{
+		int aniId = (int)atoi(tokens[3].c_str());
+		obj = new CCloud(x, y, aniId);
+		break;
+	}
 
 	case OBJECT_TYPE_TREE:
 	{
 		int aniId = (int)atoi(tokens[3].c_str());
 		obj = new CTree(x, y, aniId);
+		break;
+	}
+
+	case OBJECT_TYPE_COLORBLOCK:
+	{
+		int aniId = (int)atoi(tokens[3].c_str());
+		obj = new CColorBlock(x, y, aniId);
 		break;
 	}
 
