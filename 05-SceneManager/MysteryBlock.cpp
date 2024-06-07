@@ -49,6 +49,7 @@ void CMBlock::SetState(int state)
 
 void CMBlock::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
+	CGameObject::Update(dt, coObjects);
 	if (state == MBLOCK_STATE_EMPTY) {
 		y += vy * dt;
 		if (GetTickCount64() - empty_start < 70) {
@@ -60,7 +61,10 @@ void CMBlock::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		else {
 			y = y0;
 			vy = 0;
+			aniId = ID_ANI_MBLOCK_EMPTY;
+			CAnimations* animations = CAnimations::GetInstance();
+			animations->Get(aniId)->Render(x, y);
 		}
 	}
-	CGameObject::Update(dt, coObjects);
+
 }

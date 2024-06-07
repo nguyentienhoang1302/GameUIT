@@ -123,11 +123,12 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_MBLOCK:
 	{
 		int content = (int)atoi(tokens[4].c_str());
-		//int aniId = (int)atoi(tokens[3].c_str());
-		if (MBLOCK_STATE_DEFAULT)
-			obj = new CMBlock(x, y, 101000, content);
-		else
-			obj = new CMBlock(x, y, 102000, content);
+		int aniId = (int)atoi(tokens[3].c_str());
+		obj = new CMBlock(x, y, aniId, content);
+		//if (MBLOCK_STATE_DEFAULT)
+		//	obj = new CMBlock(x, y, ID_ANI_MBLOCK, content);
+		//else
+		//	obj = new CMBlock(x, y, ID_ANI_MBLOCK_EMPTY, content);
 		break;
 	}
 	case OBJECT_TYPE_CLOUD:
