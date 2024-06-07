@@ -16,6 +16,7 @@
 
 class CPlayScene: public CScene
 {
+	static CPlayScene* __instance;
 protected: 
 	// A play scene has to have player, right? 
 	LPGAMEOBJECT player;					
@@ -42,6 +43,8 @@ public:
 
 	void Clear();
 	void PurgeDeletedObjects();
+
+	void SpawnGameObject(CGameObject* obj, float x, float y);
 
 	static bool IsGameObjectDeleted(const LPGAMEOBJECT& o);
 };

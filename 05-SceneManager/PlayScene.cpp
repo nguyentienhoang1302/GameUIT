@@ -122,8 +122,12 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
 	case OBJECT_TYPE_MBLOCK:
 	{
-		int aniId = (int)atoi(tokens[3].c_str());
-		obj = new CMBlock(x, y, aniId);
+		int content = (int)atoi(tokens[4].c_str());
+		//int aniId = (int)atoi(tokens[3].c_str());
+		if (MBLOCK_STATE_DEFAULT)
+			obj = new CMBlock(x, y, 101000, content);
+		else
+			obj = new CMBlock(x, y, 102000, content);
 		break;
 	}
 	case OBJECT_TYPE_CLOUD:
@@ -269,17 +273,27 @@ void CPlayScene::Update(DWORD dt)
 {
 	// We know that Mario is the first object in the list hence we won't add him into the colliable object list
 	// TO-DO: This is a "dirty" way, need a more organized way 
-
 	vector<LPGAMEOBJECT> coObjects;
 	for (size_t i = 1; i < objects.size(); i++)
 	{
 		coObjects.push_back(objects[i]);
 	}
 
-	for (size_t i = 0; i < objects.size(); i++)
+	size_t i = 0;
+	while (i < objects.size())
 	{
 		objects[i]->Update(dt, &coObjects);
+		if (objects[i]->CreateSubObject) {
+			CGameObject* obj = NULL;
+			obj = objects[i]->subObject;
+			objects.push_back(obj);
+			Render();
+			objects[i]->CreateSubObject = false;
+		}
+		i++;
 	}
+
+
 
 	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
 	if (player == NULL) return; 
@@ -359,4 +373,9 @@ void CPlayScene::PurgeDeletedObjects()
 	objects.erase(
 		std::remove_if(objects.begin(), objects.end(), CPlayScene::IsGameObjectDeleted),
 		objects.end());
+}
+
+void CPlayScene::SpawnGameObject(CGameObject* obj, float x, float y) {
+	obj->SetPosition(x, y);
+	objects.push_back(obj);
 }
