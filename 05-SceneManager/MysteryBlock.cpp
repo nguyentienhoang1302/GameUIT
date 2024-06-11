@@ -7,7 +7,9 @@ CMBlock::CMBlock(float x, float y,int aniID, int content) : CGameObject(x, y) {
 		subObject = new CCoinSpawn(x, y);
 		subObject->SetPosition(x, y - 16);
 	}
-	
+	else if (content == 2) {
+		subObject = new CMushroom(x, y);
+	}
 	empty_start = -1;
 	SetState(MBLOCK_STATE_DEFAULT);
 	y0 = y;
@@ -50,6 +52,7 @@ void CMBlock::SetState(int state)
 void CMBlock::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	CGameObject::Update(dt, coObjects);
+
 	if (state == MBLOCK_STATE_EMPTY) {
 		y += vy * dt;
 		if (GetTickCount64() - empty_start < 70) {
@@ -62,9 +65,8 @@ void CMBlock::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			y = y0;
 			vy = 0;
 			aniId = ID_ANI_MBLOCK_EMPTY;
-			CAnimations* animations = CAnimations::GetInstance();
-			animations->Get(aniId)->Render(x, y);
+			//CAnimations* animations = CAnimations::GetInstance();
+			//animations->Get(aniId)->Render(x, y);
 		}
 	}
-
 }

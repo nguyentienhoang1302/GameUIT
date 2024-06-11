@@ -10,7 +10,7 @@
 #include "Coin.h"
 #include "Platform.h"
 #include "Pipe.h"
-
+#include "Mushroom.h"
 #include "SampleKeyEventHandler.h"
 
 using namespace std;
@@ -120,6 +120,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_GOOMBA: obj = new CGoomba(x,y); break;
 	case OBJECT_TYPE_BRICK: obj = new CBrick(x,y); break;
 	case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
+	case OBJECT_TYPE_MUSHROOM: obj = new CMushroom(x, y); break;
 	case OBJECT_TYPE_MBLOCK:
 	{
 		int content = (int)atoi(tokens[4].c_str());
@@ -131,6 +132,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		//	obj = new CMBlock(x, y, ID_ANI_MBLOCK_EMPTY, content);
 		break;
 	}
+
 	case OBJECT_TYPE_CLOUD:
 	{
 		int aniId = (int)atoi(tokens[3].c_str());

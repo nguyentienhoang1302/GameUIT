@@ -57,6 +57,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithPortal(e);
 	else if (dynamic_cast<CMBlock*>(e->obj))
 		OnCollisionWithMBlock(e);
+	else if (dynamic_cast<CMushroom*>(e->obj))
+		OnCollisionWithMushroom(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -111,6 +113,18 @@ void CMario::OnCollisionWithMBlock(LPCOLLISIONEVENT e)
 	if (e->ny > 0 && mysteryblock->GetState() == MBLOCK_STATE_DEFAULT) {
 		mysteryblock->SetState(MBLOCK_STATE_EMPTY);
 		coin++;
+	}
+}
+
+void CMario::OnCollisionWithMushroom(LPCOLLISIONEVENT e)
+{
+	e->obj->Delete();
+	if (level == MARIO_LEVEL_SMALL)
+	{
+		StartUntouchable();
+		y -= 8;
+		level = MARIO_LEVEL_BIG;
+		StartUntouchable();
 	}
 }
 

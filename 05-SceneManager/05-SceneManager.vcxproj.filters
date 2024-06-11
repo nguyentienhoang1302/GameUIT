@@ -99,6 +99,9 @@
     <ClCompile Include="CoinSpawn.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="Mushroom.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -186,6 +189,9 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="CoinSpawn.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mushroom.h">
       <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
