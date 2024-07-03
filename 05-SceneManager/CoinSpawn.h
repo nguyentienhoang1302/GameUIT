@@ -4,7 +4,7 @@
 #include "Animation.h"
 #include "Animations.h"
 
-#define ID_ANI_COINFROMBOX 11000
+#define ID_ANI_COINFROMBOX 41000
 
 #define	COINFROMBOX_WIDTH 10
 #define COINFROMBOX_BBOX_WIDTH 10
