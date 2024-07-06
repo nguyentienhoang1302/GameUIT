@@ -102,6 +102,9 @@
     <ClCompile Include="Platform.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="DarkZone.cpp">
+      <Filter>Backgorund</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -193,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="Platform.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="DarkZone.h">
+      <Filter>Backgorund</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,6 +10,7 @@ colorblock.txt
 pipe.txt
 mysteryblock.txt
 mushroom.txt
+darkzone.txt
 
 #
 [OBJECTS]
@@ -28,6 +29,9 @@ mushroom.txt
 5	1536	194	16	16	5	51000	52000	53000
 5	1664	194	16	16	36	51000	52000	53000
 5	2256	194	16	16	35	51000	52000	53000
+
+#Darkzone2480
+12	2480	178	16	16	21	26	121000	122000	123000
 
 #Tree
 6	16	178	63000

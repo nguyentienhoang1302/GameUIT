@@ -107,9 +107,10 @@ void CMario::OnCollisionWithCoin(LPCOLLISIONEVENT e)
 void CMario::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 {
 	CBrick* brick = (CBrick*)(e->obj);
-	if (brick->IsBreakable() == 1)
+	if (brick->IsBreakable() == 1 && level == MARIO_LEVEL_BIG)
 	{
-		e->obj->Delete();
+		if (e->ny > 0)
+			e->obj->Delete();
 	}
 }
 

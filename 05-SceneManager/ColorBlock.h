@@ -4,9 +4,9 @@
 #include "Animation.h"
 #include "Animations.h"
 
-#define COLORBLOCK_WIDTH 17
-#define COLORBLOCK_BBOX_WIDTH 17
-#define COLORBLOCK_BBOX_HEIGHT 17
+#define COLORBLOCK_WIDTH 16
+#define COLORBLOCK_BBOX_WIDTH 16
+#define COLORBLOCK_BBOX_HEIGHT 16
 
 
 class CColorBlock : public CGameObject {

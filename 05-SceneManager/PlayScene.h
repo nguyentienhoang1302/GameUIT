@@ -11,6 +11,7 @@
 #include "ColorBlock.h"
 #include "Pipe.h"
 #include "MysteryBlock.h"
+#include "DarkZone.h"
 //#include "Koopas.h"
 
 
