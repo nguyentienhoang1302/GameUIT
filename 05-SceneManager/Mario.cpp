@@ -8,6 +8,7 @@
 #include "Coin.h"
 #include "Portal.h"
 #include "MysteryBlock.h"
+#include "Brick.h"
 
 #include "Collision.h"
 
@@ -59,6 +60,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithMBlock(e);
 	else if (dynamic_cast<CMushroom*>(e->obj))
 		OnCollisionWithMushroom(e);
+	else if (dynamic_cast<CBrick*>(e->obj))
+		OnCollisionWithBrick(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -99,6 +102,15 @@ void CMario::OnCollisionWithCoin(LPCOLLISIONEVENT e)
 {
 	e->obj->Delete();
 	coin++;
+}
+
+void CMario::OnCollisionWithBrick(LPCOLLISIONEVENT e)
+{
+	CBrick* brick = (CBrick*)(e->obj);
+	if (brick->IsBreakable() == 1)
+	{
+		e->obj->Delete();
+	}
 }
 
 void CMario::OnCollisionWithPortal(LPCOLLISIONEVENT e)
