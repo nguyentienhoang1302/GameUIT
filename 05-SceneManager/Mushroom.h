@@ -10,7 +10,7 @@
 
 #define	MUSHROOM_WIDTH 16
 #define MUSHROOM_BBOX_WIDTH 16
-#define MUSHROOM_BBOX_HEIGHT 16
+#define MUSHROOM_BBOX_HEIGHT 14
 
 class CMushroom : public CGameObject {
 protected:
