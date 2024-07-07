@@ -12,6 +12,7 @@ mysteryblock.txt
 mushroom.txt
 darkzone.txt
 goomba.txt
+koopa.txt
 
 #
 [OBJECTS]
@@ -497,6 +498,9 @@ goomba.txt
 1	1088	194	10000
 1	160	130	12000
 1	144	130	11000
+1	50	178	12000
+1	120	50	12000
+
 
 #wood bricks
 1	1504	114	11000
@@ -556,5 +560,10 @@ goomba.txt
 4	180	120
 
 #Goomba
-2	300	10	1
-2	200	10	2
+#2	300	10	1
+#2	200	10	2
+
+#Koopa
+3	100	10	1
+3	200	10	2
+3	300	10	3

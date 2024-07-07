@@ -20,6 +20,7 @@
 class CMBlock : public CGameObject {
 protected:
 	int aniId;
+	int content;
 
 	float ax = 0;
 	float ay = 0;
@@ -37,4 +38,5 @@ public:
 	void Render();
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
+	int getContent();
 };

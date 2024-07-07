@@ -9,6 +9,7 @@
 #include "Portal.h"
 #include "MysteryBlock.h"
 #include "Brick.h"
+#include "GreenKoopa.h"
 
 #include "Collision.h"
 
@@ -62,6 +63,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithMushroom(e);
 	else if (dynamic_cast<CBrick*>(e->obj))
 		OnCollisionWithBrick(e);
+	else if (dynamic_cast<CGKoopa*>(e->obj))
+		OnCollisionWithGKoopa(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -87,6 +90,96 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 		if (untouchable == 0)
 		{
 			if (goomba->GetState() != GOOMBA_STATE_DIE)
+			{
+				if (level > MARIO_LEVEL_SMALL)
+				{
+					level = MARIO_LEVEL_SMALL;
+					StartUntouchable();
+				}
+				else
+				{
+					DebugOut(L">>> Mario DIE >>> \n");
+					SetState(MARIO_STATE_DIE);
+				}
+			}
+		}
+	}
+}
+
+void CMario::OnCollisionWithGKoopa(LPCOLLISIONEVENT e)
+{
+	CGKoopa* koopa = dynamic_cast<CGKoopa*>(e->obj);
+
+	if ((e->ny < 0 && koopa->GetState() == KOOPA_STATE_WINGED_WALK) || (e->ny < 0 && koopa->GetState() == KOOPA_STATE_WINGED_JUMP))
+	{
+		koopa->SetState(KOOPA_STATE_WALK);
+		vy = -MARIO_JUMP_DEFLECT_SPEED;
+	}
+	else if (e->ny < 0 && koopa->GetState() == KOOPA_STATE_WALK)
+	{
+		if (koopa->GetState() != KOOPA_STATE_SHELL)
+		{
+			koopa->SetState(KOOPA_STATE_SHELL);
+			vy = -MARIO_JUMP_DEFLECT_SPEED;
+		}
+	}
+	else if (e->ny < 0 && koopa->GetState() == KOOPA_STATE_RED_WALK)
+	{
+		if (koopa->GetState() != KOOPA_STATE_RED_SHELL)
+		{
+			koopa->SetState(KOOPA_STATE_RED_SHELL);
+			vy = -MARIO_JUMP_DEFLECT_SPEED;
+		}
+	}
+	//else if (e->ny < 0 && koopa->GetState() == KOOPA_STATE_SHELL)
+	//{
+	//	if (koopa->GetState() != KOOPA_STATE_SPIN)
+	//	{
+	//		koopa->SetState(KOOPA_STATE_SPIN);
+	//		vy = -MARIO_JUMP_DEFLECT_SPEED;
+
+	//	}
+	//}
+
+	else if (koopa->GetState() == KOOPA_STATE_SHELL)
+	{
+		if (e->ny < 0)
+		{
+			koopa->SetState(KOOPA_STATE_SPIN);
+			vy = -MARIO_JUMP_DEFLECT_SPEED;
+			return;
+		}
+		else if (e->nx < 0) {
+			koopa->SetState(KOOPA_STATE_SPIN);
+			koopa->SpinLeft();
+		}
+		else {
+			koopa->SetState(KOOPA_STATE_SPIN);
+			koopa->SpinRight();
+		}
+	}
+	else if (koopa->GetState() == KOOPA_STATE_RED_SHELL)
+	{
+		if (e->ny < 0)
+		{
+			koopa->SetState(KOOPA_STATE_RED_SPIN);
+			vy = -MARIO_JUMP_DEFLECT_SPEED;
+			return;
+		}
+		else if (e->nx < 0) {
+			koopa->SetState(KOOPA_STATE_RED_SPIN);
+			koopa->SpinLeft();
+		}
+		else {
+			koopa->SetState(KOOPA_STATE_RED_SPIN);
+			koopa->SpinRight();
+		}
+	}
+	else
+	{
+		if (untouchable == 0)
+		{
+			if (koopa->GetState() != KOOPA_STATE_SHELL)
 			{
 				if (level > MARIO_LEVEL_SMALL)
 				{
@@ -130,7 +223,10 @@ void CMario::OnCollisionWithMBlock(LPCOLLISIONEVENT e)
 	CMBlock* mysteryblock = (CMBlock*)(e->obj);
 	if (e->ny > 0 && mysteryblock->GetState() == MBLOCK_STATE_DEFAULT) {
 		mysteryblock->SetState(MBLOCK_STATE_EMPTY);
-		coin++;
+		if (mysteryblock->getContent() == 1)
+		{
+			increaseCoin();
+		}
 	}
 }
 
@@ -394,6 +490,11 @@ void CMario::GetBoundingBox(float &left, float &top, float &right, float &bottom
 		right = left + MARIO_SMALL_BBOX_WIDTH;
 		bottom = top + MARIO_SMALL_BBOX_HEIGHT;
 	}
+}
+
+void CMario::increaseCoin()
+{
+	coin++;
 }
 
 void CMario::SetLevel(int l)

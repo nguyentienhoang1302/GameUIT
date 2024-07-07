@@ -108,6 +108,9 @@
     <ClCompile Include="Goomba.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="GreenKoopa.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -201,6 +204,9 @@
       <Filter>Backgorund</Filter>
     </ClInclude>
     <ClInclude Include="Goomba.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="GreenKoopa.h">
       <Filter>Enemies</Filter>
     </ClInclude>
   </ItemGroup>

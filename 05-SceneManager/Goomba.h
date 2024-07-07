@@ -46,6 +46,6 @@ protected:
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 
 public: 	
-	CGoomba(float x, float y, int type);
+	CGoomba(float x, float y, int type);	//type: 1 - Goomba, 2 - Para-Goomba
 	virtual void SetState(int state);
 };

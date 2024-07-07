@@ -3,6 +3,7 @@
 
 CMBlock::CMBlock(float x, float y,int aniID, int content) : CGameObject(x, y) {
 	this->aniId = aniID;
+	this->content = content;
 	if (content == 1) {
 		subObject = new CCoinSpawn(x, y);
 		subObject->SetPosition(x, y - 16);
@@ -33,6 +34,11 @@ void CMBlock::GetBoundingBox(float& l, float& t, float& r, float& b)
 	t = y - MBLOCK_BBOX_HEIGHT / 2;
 	r = l + MBLOCK_BBOX_WIDTH;
 	b = t + MBLOCK_BBOX_HEIGHT;
+}
+
+int CMBlock::getContent()
+{
+	return this->content;
 }
 
 void CMBlock::SetState(int state)
