@@ -200,15 +200,17 @@ void CGKoopa::SetState(int state)
 		ay = 0;
 		break;
 	case KOOPA_STATE_RED_WALK:
-		vx = -KOOPA_WALKING_SPEED;
-		//vx = 0;
+		//vx = -KOOPA_WALKING_SPEED;
+		vx = 0;
 		break;
 	case KOOPA_STATE_SPIN:
 		vx = KOOPA_SPINNING_SPEED;
+		ay = KOOPA_GRAVITY;
 		//vx = 0;
 		break;
 	case KOOPA_STATE_RED_SPIN:
 		vx = KOOPA_SPINNING_SPEED;
+		ay = KOOPA_GRAVITY;
 		//vx = 0;
 		break;
 	}
