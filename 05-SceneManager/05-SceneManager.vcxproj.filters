@@ -22,6 +22,9 @@
     <Filter Include="Enemies">
       <UniqueIdentifier>{6040face-184f-4994-8f87-7e6d3d78bc5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{dfaace61-2720-4aec-b058-831cdef0e3e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -46,9 +49,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mario.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SampleKeyEventHandler.cpp">
@@ -108,8 +108,11 @@
     <ClCompile Include="Goomba.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="GreenKoopa.cpp">
+    <ClCompile Include="Koopa.cpp">
       <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario.cpp">
+      <Filter>Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -138,9 +141,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="KeyEventHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mario.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SampleKeyEventHandler.h">
@@ -206,8 +206,11 @@
     <ClInclude Include="Goomba.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="GreenKoopa.h">
+    <ClInclude Include="Koopa.h">
       <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

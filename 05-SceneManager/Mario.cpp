@@ -9,7 +9,7 @@
 #include "Portal.h"
 #include "MysteryBlock.h"
 #include "Brick.h"
-#include "GreenKoopa.h"
+#include "Koopa.h"
 
 #include "Collision.h"
 
@@ -63,8 +63,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithMushroom(e);
 	else if (dynamic_cast<CBrick*>(e->obj))
 		OnCollisionWithBrick(e);
-	else if (dynamic_cast<CGKoopa*>(e->obj))
-		OnCollisionWithGKoopa(e);
+	else if (dynamic_cast<CKoopa*>(e->obj))
+		OnCollisionWithKoopa(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -106,9 +106,9 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 	}
 }
 
-void CMario::OnCollisionWithGKoopa(LPCOLLISIONEVENT e)
+void CMario::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 {
-	CGKoopa* koopa = dynamic_cast<CGKoopa*>(e->obj);
+	CKoopa* koopa = dynamic_cast<CKoopa*>(e->obj);
 
 	if ((e->ny < 0 && koopa->GetState() == KOOPA_STATE_WINGED_WALK) || (e->ny < 0 && koopa->GetState() == KOOPA_STATE_WINGED_JUMP))
 	{

@@ -126,7 +126,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_KOOPA:
 	{
 		int type = (int)atoi(tokens[3].c_str());
-		obj = new CGKoopa(x, y, type);
+		obj = new CKoopa(x, y, type);
 		break;
 	}
 	//case OBJECT_TYPE_BRICK: obj = new CBrick(x,y); break;

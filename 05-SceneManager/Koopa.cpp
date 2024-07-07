@@ -1,9 +1,9 @@
-#include "GreenKoopa.h"
+#include "Koopa.h"
 #include "Brick.h"
 #include "Goomba.h"
 #include "MysteryBlock.h"
 
-CGKoopa::CGKoopa(float x, float y, int type) :CGameObject(x, y)
+CKoopa::CKoopa(float x, float y, int type) :CGameObject(x, y)
 {
 	this->ax = 0;
 	this->ay = KOOPA_GRAVITY;
@@ -24,7 +24,7 @@ CGKoopa::CGKoopa(float x, float y, int type) :CGameObject(x, y)
 	}
 }
 
-void CGKoopa::GetBoundingBox(float& left, float& top, float& right, float& bottom)
+void CKoopa::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	if (state == KOOPA_STATE_SHELL || state == KOOPA_STATE_RED_SHELL || state == KOOPA_STATE_SPIN || state == KOOPA_STATE_RED_SPIN)
 	{
@@ -49,18 +49,18 @@ void CGKoopa::GetBoundingBox(float& left, float& top, float& right, float& botto
 	}
 }
 
-void CGKoopa::OnNoCollision(DWORD dt)
+void CKoopa::OnNoCollision(DWORD dt)
 {
 	x += vx * dt;
 	y += vy * dt;
 };
 
-void CGKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
+void CKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
 {
 	if (state == KOOPA_STATE_SPIN || state == KOOPA_STATE_RED_SPIN)
 	{
-		if (dynamic_cast<CGKoopa*>(e->obj))
-			OnCollisionWithGKoopa(e);
+		if (dynamic_cast<CKoopa*>(e->obj))
+			OnCollisionWithKoopa(e);
 		if (dynamic_cast<CGoomba*>(e->obj))
 			OnCollisionWithGoomba(e);
 		if (dynamic_cast<CMBlock*>(e->obj))
@@ -81,7 +81,7 @@ void CGKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
 	}
 }
 
-void CGKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
+void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	vy += ay * dt;
 	vx += ax * dt;
@@ -120,7 +120,7 @@ void CGKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 }
 
 
-void CGKoopa::Render()
+void CKoopa::Render()
 {
 	int aniId = -1;
 	if (state == KOOPA_STATE_WINGED_WALK)
@@ -161,7 +161,7 @@ void CGKoopa::Render()
 	//RenderBoundingBox();
 }
 
-void CGKoopa::SetState(int state)
+void CKoopa::SetState(int state)
 {
 	switch (state)
 	{
@@ -217,7 +217,7 @@ void CGKoopa::SetState(int state)
 	CGameObject::SetState(state);
 }
 
-void CGKoopa::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
+void CKoopa::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 {
 	CGoomba* goomba = dynamic_cast<CGoomba*>(e->obj);
 
@@ -234,9 +234,9 @@ void CGKoopa::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 	}
 }
 
-void CGKoopa::OnCollisionWithGKoopa(LPCOLLISIONEVENT e)
+void CKoopa::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 {
-	CGKoopa* koopa = dynamic_cast<CGKoopa*>(e->obj);
+	CKoopa* koopa = dynamic_cast<CKoopa*>(e->obj);
 
 	if (koopa->GetState() == KOOPA_STATE_WINGED_WALK || koopa->GetState() == KOOPA_STATE_WINGED_JUMP)
 	{
@@ -259,7 +259,7 @@ void CGKoopa::OnCollisionWithGKoopa(LPCOLLISIONEVENT e)
 }
 
 
-void CGKoopa::OnCollisionWithBrick(LPCOLLISIONEVENT e)
+void CKoopa::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 {
 	CBrick* brick = (CBrick*)(e->obj);
 	if (brick->IsBreakable() == 1)
@@ -268,7 +268,7 @@ void CGKoopa::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 	}
 }
 
-void CGKoopa::OnCollisionWithMBlock(LPCOLLISIONEVENT e)
+void CKoopa::OnCollisionWithMBlock(LPCOLLISIONEVENT e)
 {
 	CMBlock* mysteryblock = (CMBlock*)(e->obj);
 	if (e->ny > 0 && mysteryblock->GetState() == MBLOCK_STATE_DEFAULT) {
@@ -276,12 +276,12 @@ void CGKoopa::OnCollisionWithMBlock(LPCOLLISIONEVENT e)
 	}
 }
 
-void CGKoopa::SpinLeft() {
+void CKoopa::SpinLeft() {
 	//this->SetState(KOOPA_STATE_SPIN);
 	vx = KOOPA_SPINNING_SPEED;
 }
 
-void CGKoopa::SpinRight() {
+void CKoopa::SpinRight() {
 	//this->SetState(KOOPA_STATE_SPIN);
 	vx = -KOOPA_SPINNING_SPEED;
 }

@@ -33,7 +33,7 @@
 #define ID_ANI_KOOPA_RED_SHELL 37000
 #define ID_ANI_KOOPA_RED_SPIN 38000
 
-class CGKoopa : public CGameObject
+class CKoopa : public CGameObject
 {
 protected:
 	float ax;
@@ -54,10 +54,10 @@ protected:
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 
 public:
-	CGKoopa(float x, float y, int type);
+	CKoopa(float x, float y, int type);
 	virtual void SetState(int state);
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
-	void OnCollisionWithGKoopa(LPCOLLISIONEVENT e);
+	void OnCollisionWithKoopa(LPCOLLISIONEVENT e);
 	void OnCollisionWithBrick(LPCOLLISIONEVENT e);
 	void OnCollisionWithMBlock(LPCOLLISIONEVENT e);
 

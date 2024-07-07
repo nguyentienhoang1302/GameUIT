@@ -12,7 +12,7 @@
 #include "Pipe.h"
 #include "MysteryBlock.h"
 #include "DarkZone.h"
-#include "GreenKoopa.h"
+#include "Koopa.h"
 //#include "Koopas.h"
 
 
