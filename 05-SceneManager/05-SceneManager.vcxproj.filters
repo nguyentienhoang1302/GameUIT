@@ -114,6 +114,9 @@
     <ClCompile Include="Mario.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="PiranhaPlant.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -211,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="Mario.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PiranhaPlant.h">
+      <Filter>Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

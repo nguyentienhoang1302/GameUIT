@@ -12,6 +12,7 @@
 class CPipe : public CGameObject {
 protected:
 	int aniId;
+	virtual int RenderPriority() { return 1; };
 public:
 	CPipe(float x, float y, int aniId) : CGameObject(x, y) {
 		this->aniId = aniId;

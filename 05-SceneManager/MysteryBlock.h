@@ -29,6 +29,8 @@ protected:
 
 	ULONGLONG empty_start;
 
+	virtual int RenderPriority() { return 1; };
+
 public:
 	CMBlock(float x, float y,int aniID, int content);
 	//content: 1-coin 2-mushroom 3-leaf

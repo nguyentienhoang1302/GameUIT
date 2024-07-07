@@ -13,6 +13,7 @@ mushroom.txt
 darkzone.txt
 goomba.txt
 koopa.txt
+piranhaplant.txt
 
 #
 [OBJECTS]
@@ -567,3 +568,6 @@ koopa.txt
 3	100	10	1
 3	200	10	2
 3	300	10	3
+
+#Piranha Plant
+13	360	146

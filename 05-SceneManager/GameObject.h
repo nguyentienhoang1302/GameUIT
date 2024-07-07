@@ -72,6 +72,8 @@ public:
 	// Can Mario stand on top of this object
 	virtual int IsMarioOnTop(float nx, float ny) { return 1; }
 
+	virtual int RenderPriority() { return 0; };
+
 
 	~CGameObject();
 

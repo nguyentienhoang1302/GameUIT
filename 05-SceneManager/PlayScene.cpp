@@ -11,6 +11,7 @@
 #include "Platform.h"
 #include "Pipe.h"
 #include "Mushroom.h"
+#include "PiranhaPlant.h"
 #include "SampleKeyEventHandler.h"
 
 using namespace std;
@@ -138,6 +139,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	}
 	case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
 	case OBJECT_TYPE_MUSHROOM: obj = new CMushroom(x, y); break;
+	case OBJECT_TYPE_PIRANHAPLANT: obj = new CPPlant(x, y); break;
 	case OBJECT_TYPE_MBLOCK:
 	{
 		int content = (int)atoi(tokens[4].c_str());
@@ -358,7 +360,9 @@ void CPlayScene::Render()
 	for (int i = 0; i < objects.size(); i++)
 		if (objects[i] != player)
 			objects[i]->Render();
-
+	for (int i = 0; i < objects.size(); i++)
+		if (objects[i]->RenderPriority()==1)
+			objects[i]->Render();
 	if (player)
 		player->Render();
 }
