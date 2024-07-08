@@ -12,6 +12,7 @@
 #include "Koopa.h"
 #include "PiranhaPlant.h"
 #include "Fireball.h"
+#include "FirePiranhaPlant.h"
 
 #include "Collision.h"
 
@@ -19,6 +20,9 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	vy += ay * dt;
 	vx += ax * dt;
+
+	CGame::GetInstance()->GetCurrentScene()->xMario = x;
+	CGame::GetInstance()->GetCurrentScene()->yMario = y;
 
 	if (abs(vx) > abs(maxVx)) vx = maxVx;
 
@@ -71,6 +75,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithPPlant(e);
 	else if (dynamic_cast<CFireball*>(e->obj))
 		OnCollisionWithFireball(e);
+	else if (dynamic_cast<CFPlant*>(e->obj))
+		OnCollisionWithFPlant(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -223,6 +229,20 @@ void CMario::OnCollisionWithPPlant(LPCOLLISIONEVENT e)
 }
 
 void CMario::OnCollisionWithFireball(LPCOLLISIONEVENT e)
+{
+	if (level > MARIO_LEVEL_SMALL)
+	{
+		level = MARIO_LEVEL_SMALL;
+		StartUntouchable();
+	}
+	else
+	{
+		DebugOut(L">>> Mario DIE >>> \n");
+		SetState(MARIO_STATE_DIE);
+	}
+}
+
+void CMario::OnCollisionWithFPlant(LPCOLLISIONEVENT e)
 {
 	if (level > MARIO_LEVEL_SMALL)
 	{

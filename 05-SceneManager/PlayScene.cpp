@@ -13,6 +13,8 @@
 #include "Mushroom.h"
 #include "PiranhaPlant.h"
 #include "Fireball.h"
+#include "FirePiranhaPlant.h"
+
 #include "SampleKeyEventHandler.h"
 
 using namespace std;
@@ -145,6 +147,12 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	{
 		int direction = (int)atoi(tokens[3].c_str());
 		obj = new CFireball(x, y, direction);
+		break;
+	}
+	case OBJECT_TYPE_FIREPIRANHAPLANT:
+	{
+		int type = (int)atoi(tokens[3].c_str());
+		obj = new CFPlant(x, y, type);
 		break;
 	}
 	case OBJECT_TYPE_MBLOCK:

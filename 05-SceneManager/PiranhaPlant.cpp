@@ -1,5 +1,4 @@
 #include "PiranhaPlant.h"
-#include "debug.h"
 
 void CPPlant::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
@@ -15,10 +14,10 @@ void CPPlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	y += vy * dt;
 
 	risetime += dt;
-	if (risetime < 3000) {
+	if (risetime < 4000) {
 		Rise();
 	}
-	else if (risetime < 6000) {
+	else if (risetime < 8000) {
 		Fall();
 	}
 	else risetime = 0;
@@ -30,14 +29,13 @@ void CPPlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 void CPPlant::Render()
 {
-	if (!settime) {
-		y0 = y;
+	if (!settime) 
+	{
+		y0 = y + 6;
 		risetime = 0;
 		settime = true;
 	}
 	CAnimations::GetInstance()->Get(ID_ANI_PIRANHAPLANT)->Render(x, y);
-
-	//RenderBoundingBox();
 }
 
 void CPPlant::SetState(int state)
@@ -45,21 +43,24 @@ void CPPlant::SetState(int state)
 	CGameObject::SetState(state);
 }
 
-void CPPlant::Rise() {
-	if (y < y0 - PIRANHAPLANT_BBOX_HEIGHT) {
+void CPPlant::Rise() 
+{
+	if (y < y0 - PIRANHAPLANT_BBOX_HEIGHT) 
+	{
 		y = y0 - PIRANHAPLANT_BBOX_HEIGHT;
 		vy = 0;
 	}
 	else
-		vy = -0.022f;
+		vy = -0.02f;
 }
-void CPPlant::Fall() {
-	if (y > y0 + 6)
+void CPPlant::Fall() 
+{
+	if (y > y0 + 5)
 	{
 		vy = 0;
-		y = y0 + 6;
+		y = y0 + 5;
 	}
 	else
-		vy = 0.022f;
+		vy = 0.02f;
 }
 
