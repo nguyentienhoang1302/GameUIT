@@ -13,14 +13,16 @@ void CPPlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	x += vx * dt;
 	y += vy * dt;
+
 	risetime += dt;
-	if (risetime < 1500) {
+	if (risetime < 3000) {
 		Rise();
 	}
-	else if (risetime < 4000) {
+	else if (risetime < 6000) {
 		Fall();
 	}
 	else risetime = 0;
+
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }

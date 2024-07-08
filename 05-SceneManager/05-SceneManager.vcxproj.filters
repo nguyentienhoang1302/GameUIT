@@ -117,6 +117,9 @@
     <ClCompile Include="PiranhaPlant.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Fireball.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -216,6 +219,9 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="PiranhaPlant.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Fireball.h">
       <Filter>Enemies</Filter>
     </ClInclude>
   </ItemGroup>

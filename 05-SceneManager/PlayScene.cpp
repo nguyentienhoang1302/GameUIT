@@ -12,6 +12,7 @@
 #include "Pipe.h"
 #include "Mushroom.h"
 #include "PiranhaPlant.h"
+#include "Fireball.h"
 #include "SampleKeyEventHandler.h"
 
 using namespace std;
@@ -108,13 +109,13 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	switch (object_type)
 	{
 	case OBJECT_TYPE_MARIO:
-		if (player!=NULL) 
+		if (player != NULL)
 		{
 			DebugOut(L"[ERROR] MARIO object was created before!\n");
 			return;
 		}
-		obj = new CMario(x,y); 
-		player = (CMario*)obj;  
+		obj = new CMario(x, y);
+		player = (CMario*)obj;
 
 		DebugOut(L"[INFO] Player object has been created!\n");
 		break;
@@ -122,7 +123,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	{
 		int type = (int)atoi(tokens[3].c_str());
 		obj = new CGoomba(x, y, type);
-		break; 
+		break;
 	}
 	case OBJECT_TYPE_KOOPA:
 	{
@@ -140,6 +141,12 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
 	case OBJECT_TYPE_MUSHROOM: obj = new CMushroom(x, y); break;
 	case OBJECT_TYPE_PIRANHAPLANT: obj = new CPPlant(x, y); break;
+	case OBJECT_TYPE_FIREBALL:
+	{
+		int direction = (int)atoi(tokens[3].c_str());
+		obj = new CFireball(x, y, direction);
+		break;
+	}
 	case OBJECT_TYPE_MBLOCK:
 	{
 		int content = (int)atoi(tokens[4].c_str());
