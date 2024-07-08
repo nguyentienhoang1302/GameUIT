@@ -14,6 +14,7 @@
 #include "PiranhaPlant.h"
 #include "Fireball.h"
 #include "FirePiranhaPlant.h"
+#include "Shadow.h"
 
 #include "SampleKeyEventHandler.h"
 
@@ -142,6 +143,12 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	}
 	case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
 	case OBJECT_TYPE_MUSHROOM: obj = new CMushroom(x, y); break;
+	case OBJECT_TYPE_SHADOW:
+	{
+		int aniId = (int)atoi(tokens[3].c_str());
+		obj = new CShadow(x, y, aniId);
+		break;
+	}
 	case OBJECT_TYPE_PIRANHAPLANT: obj = new CPPlant(x, y); break;
 	case OBJECT_TYPE_FIREBALL:
 	{

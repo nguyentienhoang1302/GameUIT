@@ -123,6 +123,9 @@
     <ClCompile Include="FirePiranhaPlant.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Shadow.cpp">
+      <Filter>Backgorund</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="FirePiranhaPlant.h">
       <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Shadow.h">
+      <Filter>Backgorund</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
