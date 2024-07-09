@@ -2,19 +2,8 @@
 
 CGoomba::CGoomba(float x, float y, int type):CGameObject(x, y)
 {
-	this->ax = 0;
-	this->ay = GOOMBA_GRAVITY;
-	walk_start = -1;
-	die_start = -1;
-	jumpTimer = 0;
-	if (type == 1)
-	{
-		SetState(GOOMBA_STATE_WALKING);
-	}
-	else if (type == 2)
-	{
-		SetState(GOOMBA_STATE_WINGED_WALK);
-	}
+	this->type = type;
+	SetState(GOOMBA_STATE_WAITING);
 }
 
 void CGoomba::GetBoundingBox(float &left, float &top, float &right, float &bottom)
@@ -90,6 +79,22 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	{
 		SetState(GOOMBA_STATE_WINGED_JUMP);
 	}
+	if (state == GOOMBA_STATE_WAITING && CGame::GetInstance()->GetCurrentScene()->xMario + 180 >= this->x)
+	{
+		this->ax = 0;
+		this->ay = GOOMBA_GRAVITY;
+		walk_start = -1;
+		die_start = -1;
+		jumpTimer = 0;
+		if (type == 1)
+		{
+			SetState(GOOMBA_STATE_WALKING);
+		}
+		else if (type == 2)
+		{
+			SetState(GOOMBA_STATE_WINGED_WALK);
+		}
+	}
 
 
 	CGameObject::Update(dt, coObjects);
@@ -116,9 +121,13 @@ void CGoomba::Render()
 	{
 		aniId = ID_ANI_GOOMBA_WINGED_JUMP;
 	}
+	else if (state == GOOMBA_STATE_WAITING)
+	{
+		aniId = ID_ANI_GOOMBA_WAITING;
+	}
+
 	CAnimations* animations = CAnimations::GetInstance();
 	animations->Get(aniId)->Render(x, y);
-	//CAnimations::GetInstance()->Get(aniId)->Render(x,y);
 	//RenderBoundingBox();
 }
 
@@ -150,6 +159,11 @@ void CGoomba::SetState(int state)
 			{
 				vy = -GOOMBA_VY_JUMP;
 			}
+			break;
+		case GOOMBA_STATE_WAITING:
+			vx = 0;
+			vy = 0;
+			ay = 0;
 			break;
 	}
 	CGameObject::SetState(state);

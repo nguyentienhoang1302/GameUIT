@@ -4,33 +4,12 @@
 CFPlant::CFPlant(float x, float y, int type) :CGameObject(x, y)
 {
 	this->type = type;
-	SetState(FIREPIRANHAPLANT_STATE_TL);
+	//SetState(FIREPIRANHAPLANT_STATE_TL);
+	SetState(FIREPIRANHAPLANT_STATE_WAIT);
 }
 
 void CFPlant::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	//left = x - FIREPIRANHAPLANT_BBOX_WIDTH / 2;
-
-	//if (type == 1)
-	//{
-	//	top = y - FIREPIRANHAPLANT_BBOX_HEIGHT_GREEN / 2;
-	//}
-	//else if (type == 2)
-	//{
-	//	top = y - FIREPIRANHAPLANT_BBOX_HEIGHT_RED / 2;
-	//}
-
-	//right = left + FIREPIRANHAPLANT_BBOX_WIDTH;
-
-	//if (type == 1)
-	//{
-	//	bottom = top + FIREPIRANHAPLANT_BBOX_HEIGHT_GREEN;
-	//}
-	//else if (type == 2)
-	//{
-	//	bottom = top + FIREPIRANHAPLANT_BBOX_HEIGHT_RED;
-	//}
-
 	if (type == 1)
 	{
 		left = x - FIREPIRANHAPLANT_BBOX_WIDTH / 2;
@@ -49,37 +28,48 @@ void CFPlant::GetBoundingBox(float& left, float& top, float& right, float& botto
 
 void CFPlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
-	x += vx * dt;
-	y += vy * dt;
-	risetime += dt;
-	if (risetime < 2000) {
-		Rise();
-	}
-	else if (risetime < 5000) {
-		Shoot();
-	}
-	else if (risetime < 8000) {
-		isShooting = false;
-		Fall();
-	}
-	else risetime = 0;
 
-	float x1 = CGame::GetInstance()->GetCurrentScene()->xMario;
-	float y1 = CGame::GetInstance()->GetCurrentScene()->yMario;
-	if (x1 < x && y1 < y) {
+
+	if (state == FIREPIRANHAPLANT_STATE_WAIT && CGame::GetInstance()->GetCurrentScene()->xMario + 180 >= this->x)
+	{
 		SetState(FIREPIRANHAPLANT_STATE_TL);
+		isStart = true;
 	}
-	else if (x1 < x && y1 > y) {
-		SetState(FIREPIRANHAPLANT_STATE_BL);
+
+	if (isStart == true)
+	{
+		x += vx * dt;
+		y += vy * dt;
+		risetime += dt;
+		if (risetime < 2000) {
+			Rise();
+		}
+		else if (risetime < 5000) {
+			Shoot();
+		}
+		else if (risetime < 8000) {
+			isShooting = false;
+			Fall();
+		}
+		else risetime = 0;
+
+		float x1 = CGame::GetInstance()->GetCurrentScene()->xMario;
+		float y1 = CGame::GetInstance()->GetCurrentScene()->yMario;
+		if (x1 < x && y1 < y) {
+			SetState(FIREPIRANHAPLANT_STATE_TL);
+		}
+		else if (x1 < x && y1 > y) {
+			SetState(FIREPIRANHAPLANT_STATE_BL);
+		}
+		else if (x1 > x && y1 < y) {
+			SetState(FIREPIRANHAPLANT_STATE_TR);
+		}
+		else if (x1 > x && y1 > 1) {
+			SetState(FIREPIRANHAPLANT_STATE_BR);
+		}
+		CGameObject::Update(dt, coObjects);
+		CCollision::GetInstance()->Process(this, dt, coObjects);
 	}
-	else if (x1 > x && y1 < y) {
-		SetState(FIREPIRANHAPLANT_STATE_TR);
-	}
-	else if (x1 > x && y1 > 1) {
-		SetState(FIREPIRANHAPLANT_STATE_BR);
-	}
-	CGameObject::Update(dt, coObjects);
-	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
 
 void CFPlant ::Render()
@@ -148,6 +138,10 @@ void CFPlant ::Render()
 	else if (state == FIREPIRANHAPLANT_STATE_BR && type == 2 && isShooting == false)
 	{
 		aniId = ID_ANI_PIRANHAPLANT_RED_BR_IDLE;
+	}
+	else if (state == FIREPIRANHAPLANT_STATE_WAIT)
+	{
+		aniId = ID_ANI_PIRANHAPLANT_WAIT;
 	}
 	
 	if (!settime) 

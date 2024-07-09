@@ -14,12 +14,15 @@
 
 #define GOOMBA_DIE_TIMEOUT 500
 
+#define GOOMBA_STATE_WAITING 000
+
 #define GOOMBA_STATE_WALKING 100
 #define GOOMBA_STATE_DIE 200
 
 #define GOOMBA_STATE_WINGED_WALK 300
 #define GOOMBA_STATE_WINGED_JUMP 400
 
+#define ID_ANI_GOOMBA_WAITING 20000;
 #define ID_ANI_GOOMBA_WALKING 21000
 #define ID_ANI_GOOMBA_DIE 22000
 #define ID_ANI_GOOMBA_WINGED_WALK 23000
@@ -31,6 +34,7 @@ protected:
 	float ax;				
 	float ay; 
 	int jumpTimer;
+	int type;
 
 	ULONGLONG die_start;
 	ULONGLONG walk_start;

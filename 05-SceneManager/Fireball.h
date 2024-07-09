@@ -17,6 +17,7 @@ protected:
 	virtual void Render();
 
 	virtual int IsBlocking() { return 0; }
+	virtual int RenderPriority() { return 1; };
 
 public:
 	CFireball(float x, float y, int direction); //direction: 1 - topleft, 2 - botleft, 3 - topright, 4 - botright

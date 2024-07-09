@@ -15,6 +15,7 @@
 
 #define KOOPA_DIE_TIMEOUT 500
 
+#define KOOPA_STATE_WAIT 000
 #define KOOPA_STATE_WALK 100
 #define KOOPA_STATE_SHELL 200
 #define KOOPA_STATE_SPIN 300
@@ -24,6 +25,7 @@
 #define KOOPA_STATE_RED_SHELL 700
 #define KOOPA_STATE_RED_SPIN 800
 
+#define ID_ANI_KOOPA_WAIT 31000
 #define ID_ANI_KOOPA_WALK 31000
 #define ID_ANI_KOOPA_SHELL 32000
 #define ID_ANI_KOOPA_SPIN 33000
@@ -39,6 +41,7 @@ protected:
 	float ax;
 	float ay;
 	int jumpTimer;
+	int type;
 
 	ULONGLONG die_start;
 	ULONGLONG walk_start;

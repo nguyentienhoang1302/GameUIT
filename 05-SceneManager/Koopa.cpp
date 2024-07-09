@@ -5,23 +5,25 @@
 
 CKoopa::CKoopa(float x, float y, int type) :CGameObject(x, y)
 {
-	this->ax = 0;
-	this->ay = KOOPA_GRAVITY;
-	walk_start = -1;
-	die_start = -1;
-	jumpTimer = 0;
-	if (type == 1)
-	{
-		SetState(KOOPA_STATE_WALK);
-	}
-	else if (type == 2)
-	{
-		SetState(KOOPA_STATE_WINGED_WALK);
-	}
-	else if (type == 3)
-	{
-		SetState(KOOPA_STATE_RED_WALK);
-	}
+	this->type = type;
+	SetState(KOOPA_STATE_WAIT);
+	//this->ax = 0;
+	//this->ay = KOOPA_GRAVITY;
+	//walk_start = -1;
+	//die_start = -1;
+	//jumpTimer = 0;
+	//if (type == 1)
+	//{
+	//	SetState(KOOPA_STATE_WALK);
+	//}
+	//else if (type == 2)
+	//{
+	//	SetState(KOOPA_STATE_WINGED_WALK);
+	//}
+	//else if (type == 3)
+	//{
+	//	SetState(KOOPA_STATE_RED_WALK);
+	//}
 }
 
 void CKoopa::GetBoundingBox(float& left, float& top, float& right, float& bottom)
@@ -86,17 +88,6 @@ void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	vy += ay * dt;
 	vx += ax * dt;
 
-	//if ((state == KOOPA_STATE_SHELL) && (GetTickCount64() - die_start > KOOPA_DIE_TIMEOUT))
-	//{
-	//	state = KOOPA_STATE_SPIN;
-	//	return;
-	//}
-	//if ((state == KOOPA_STATE_RED_SHELL) && (GetTickCount64() - die_start > KOOPA_DIE_TIMEOUT))
-	//{
-	//	state = KOOPA_STATE_RED_SPIN;
-	//	return;
-	//}
-
 	if (state == KOOPA_STATE_WINGED_JUMP)
 	{
 		if (jumpTimer == 5)
@@ -114,6 +105,26 @@ void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		SetState(KOOPA_STATE_WINGED_JUMP);
 	}
 
+	if (state == KOOPA_STATE_WAIT && CGame::GetInstance()->GetCurrentScene()->xMario + 180 >= this->x)
+	{
+		this->ax = 0;
+		this->ay = KOOPA_GRAVITY;
+		walk_start = -1;
+		die_start = -1;
+		jumpTimer = 0;
+		if (type == 1)
+		{
+			SetState(KOOPA_STATE_WALK);
+		}
+		else if (type == 2)
+		{
+			SetState(KOOPA_STATE_WINGED_WALK);
+		}
+		else if (type == 3)
+		{
+			SetState(KOOPA_STATE_RED_WALK);
+		}
+	}
 
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);
@@ -154,6 +165,10 @@ void CKoopa::Render()
 	else if (state == KOOPA_STATE_RED_SHELL)
 	{
 		aniId = ID_ANI_KOOPA_RED_SHELL;
+	}
+	else if (state == KOOPA_STATE_WAIT)
+	{
+		aniId = ID_ANI_KOOPA_WAIT;
 	}
 	CAnimations* animations = CAnimations::GetInstance();
 	animations->Get(aniId)->Render(x, y);
@@ -200,8 +215,8 @@ void CKoopa::SetState(int state)
 		ay = 0;
 		break;
 	case KOOPA_STATE_RED_WALK:
-		//vx = -KOOPA_WALKING_SPEED;
-		vx = 0;
+		vx = -KOOPA_WALKING_SPEED;
+		//vx = 0;
 		break;
 	case KOOPA_STATE_SPIN:
 		vx = KOOPA_SPINNING_SPEED;
@@ -212,6 +227,11 @@ void CKoopa::SetState(int state)
 		vx = KOOPA_SPINNING_SPEED;
 		ay = KOOPA_GRAVITY;
 		//vx = 0;
+		break;
+	case KOOPA_STATE_WAIT:
+		vx = 0;
+		vy = 0;
+		ay = 0;
 		break;
 	}
 	CGameObject::SetState(state);

@@ -23,10 +23,13 @@
 //#define FIREPIRANHAPLANT_STATE_RED_BR_SHOOT 710
 //#define FIREPIRANHAPLANT_STATE_RED_BR_IDLE 810
 
+#define FIREPIRANHAPLANT_STATE_WAIT 000
 #define FIREPIRANHAPLANT_STATE_TL 100
 #define FIREPIRANHAPLANT_STATE_TR 200
 #define FIREPIRANHAPLANT_STATE_BL 300
 #define FIREPIRANHAPLANT_STATE_BR 400
+
+#define ID_ANI_PIRANHAPLANT_WAIT 130000
 
 #define ID_ANI_PIRANHAPLANT_GREEN_BL_SHOOT 131100
 #define ID_ANI_PIRANHAPLANT_GREEN_BL_IDLE 132100
@@ -55,6 +58,7 @@ protected:
 	float y0;
 	int type;
 	bool isShooting = false;
+	bool isStart = false;
 
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
