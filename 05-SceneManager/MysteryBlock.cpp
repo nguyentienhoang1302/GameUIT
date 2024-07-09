@@ -1,21 +1,11 @@
 #include "MysteryBlock.h"
+#include "PlayScene.h"
 
 
 CMBlock::CMBlock(float x, float y,int aniID, int content) : CGameObject(x, y) {
 	this->aniId = aniID;
 	this->content = content;
-	if (content == 1) {
-		subObject = new CCoinSpawn(x, y);
-		subObject->SetPosition(x, y - 16);
-	}
-	else if (content == 2) {
-		subObject = new CMushroom(x, y);
-	}
-	else if (content == 3) {
-		subObject = new CLeaf(x, y);
-		subObject->SetPosition(x, y - 16);
-	}
-	empty_start = -1;
+
 	SetState(MBLOCK_STATE_DEFAULT);
 	y0 = y;
 }
@@ -63,6 +53,25 @@ void CMBlock::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	CGameObject::Update(dt, coObjects);
 
+	if (content == 1) {
+		subObject = new CCoinSpawn(x, y);
+		subObject->SetPosition(x, y - 16);
+	}
+	else if (content == 2) {
+		subObject = new CMushroom(x, y);
+	}
+	else if (content == 3) {
+		if (CGame::GetInstance()->GetCurrentScene()->Mlevel == MARIO_LEVEL_SMALL)
+		{
+			subObject = new CMushroom(x, y);
+		}
+		else if (CGame::GetInstance()->GetCurrentScene()->Mlevel == MARIO_LEVEL_BIG)
+		{
+			subObject = new CLeaf(x, y);
+			subObject->SetPosition(x, y - 16);
+		}
+	}
+
 	if (state == MBLOCK_STATE_EMPTY) {
 		y += vy * dt;
 		if (GetTickCount64() - empty_start < 70) {
@@ -75,8 +84,6 @@ void CMBlock::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			y = y0;
 			vy = 0;
 			aniId = ID_ANI_MBLOCK_EMPTY;
-			//CAnimations* animations = CAnimations::GetInstance();
-			//animations->Get(aniId)->Render(x, y);
 		}
 	}
 }

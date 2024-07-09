@@ -14,6 +14,7 @@ protected:
 
 public: 
 	float xMario, yMario;
+	int Mlevel;
 	CScene(int id, LPCWSTR filePath)
 	{
 		this->id = id;

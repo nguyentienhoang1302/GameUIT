@@ -24,6 +24,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 	CGame::GetInstance()->GetCurrentScene()->xMario = x;
 	CGame::GetInstance()->GetCurrentScene()->yMario = y;
+	CGame::GetInstance()->GetCurrentScene()->Mlevel = level;
 
 	if (abs(vx) > abs(maxVx)) vx = maxVx;
 
