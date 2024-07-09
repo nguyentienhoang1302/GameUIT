@@ -5,6 +5,7 @@
 #include "Animations.h"
 #include "CoinSpawn.h"
 #include "Mushroom.h"
+#include "Leaf.h"
 
 #define ID_SPRITE_MBLOCK 100000
 #define ID_ANI_MBLOCK 101000

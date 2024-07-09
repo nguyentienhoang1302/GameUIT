@@ -11,7 +11,7 @@ class CPPlant : public CGameObject
 protected:
 	ULONGLONG risetime;
 
-	bool settime = false;
+	//bool settime = false;
 	float y0;
 
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
@@ -25,6 +25,6 @@ protected:
 	virtual void Fall();
 
 public:
-	CPPlant(float x, float y) {}
+	CPPlant(float x, float y);
 	virtual void SetState(int state);
 };

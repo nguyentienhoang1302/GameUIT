@@ -11,6 +11,10 @@ CMBlock::CMBlock(float x, float y,int aniID, int content) : CGameObject(x, y) {
 	else if (content == 2) {
 		subObject = new CMushroom(x, y);
 	}
+	else if (content == 3) {
+		subObject = new CLeaf(x, y);
+		subObject->SetPosition(x, y - 16);
+	}
 	empty_start = -1;
 	SetState(MBLOCK_STATE_DEFAULT);
 	y0 = y;

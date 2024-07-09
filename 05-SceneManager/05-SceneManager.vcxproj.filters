@@ -126,6 +126,9 @@
     <ClCompile Include="Shadow.cpp">
       <Filter>Backgorund</Filter>
     </ClCompile>
+    <ClCompile Include="Leaf.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -235,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="Shadow.h">
       <Filter>Backgorund</Filter>
+    </ClInclude>
+    <ClInclude Include="Leaf.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

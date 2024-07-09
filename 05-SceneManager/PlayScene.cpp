@@ -15,6 +15,7 @@
 #include "Fireball.h"
 #include "FirePiranhaPlant.h"
 #include "Shadow.h"
+#include "Leaf.h"
 
 #include "SampleKeyEventHandler.h"
 
@@ -143,6 +144,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	}
 	case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
 	case OBJECT_TYPE_MUSHROOM: obj = new CMushroom(x, y); break;
+	case OBJECT_TYPE_LEAF: obj = new CLeaf(x, y); break;
 	case OBJECT_TYPE_SHADOW:
 	{
 		int aniId = (int)atoi(tokens[3].c_str());
@@ -384,6 +386,9 @@ void CPlayScene::Render()
 			objects[i]->Render();
 	for (int i = 0; i < objects.size(); i++)
 		if (objects[i]->RenderPriority()==1)
+			objects[i]->Render();
+	for (int i = 0; i < objects.size(); i++)
+		if (objects[i]->RenderPriority() == 2)
 			objects[i]->Render();
 	if (player)
 		player->Render();

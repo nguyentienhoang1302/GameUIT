@@ -4,8 +4,17 @@
 CFPlant::CFPlant(float x, float y, int type) :CGameObject(x, y)
 {
 	this->type = type;
-	//SetState(FIREPIRANHAPLANT_STATE_TL);
 	SetState(FIREPIRANHAPLANT_STATE_WAIT);
+	if (type == 1)
+	{
+		y0 = y + 6;
+		risetime = 0;
+	}
+	else if (type == 2)
+	{
+		y0 = y + 10;
+		risetime = 0;
+	}
 }
 
 void CFPlant::GetBoundingBox(float& left, float& top, float& right, float& bottom)
@@ -144,21 +153,6 @@ void CFPlant ::Render()
 		aniId = ID_ANI_PIRANHAPLANT_WAIT;
 	}
 	
-	if (!settime) 
-	{
-		if (type == 1)
-		{
-			y0 = y + 6;
-			risetime = 0;
-			settime = true;
-		}
-		else if (type == 2)
-		{
-			y0 = y + 10;
-			risetime = 0;
-			settime = true;
-		}
-	}
 
 	CAnimations* animations = CAnimations::GetInstance();
 	animations->Get(aniId)->Render(x, y);

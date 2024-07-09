@@ -13,6 +13,7 @@
 #include "PiranhaPlant.h"
 #include "Fireball.h"
 #include "FirePiranhaPlant.h"
+#include "Leaf.h"
 
 #include "Collision.h"
 
@@ -77,6 +78,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithFireball(e);
 	else if (dynamic_cast<CFPlant*>(e->obj))
 		OnCollisionWithFPlant(e);
+	else if (dynamic_cast<CLeaf*>(e->obj))
+		OnCollisionWithLeaf(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -253,6 +256,18 @@ void CMario::OnCollisionWithFPlant(LPCOLLISIONEVENT e)
 	{
 		DebugOut(L">>> Mario DIE >>> \n");
 		SetState(MARIO_STATE_DIE);
+	}
+}
+
+void CMario::OnCollisionWithLeaf(LPCOLLISIONEVENT e)
+{
+	e->obj->Delete();
+	if (level == MARIO_LEVEL_SMALL)
+	{
+		StartUntouchable();
+		y -= 8;
+		level = MARIO_LEVEL_BIG;
+		StartUntouchable();
 	}
 }
 

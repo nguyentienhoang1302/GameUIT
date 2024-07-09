@@ -1,5 +1,11 @@
 #include "PiranhaPlant.h"
 
+CPPlant::CPPlant(float x, float y) :CGameObject(x, y)
+{
+	y0 = y + 6;
+	risetime = 0;
+}
+
 void CPPlant::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	left = x - PIRANHAPLANT_BBOX_WIDTH / 2;
@@ -29,12 +35,6 @@ void CPPlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 void CPPlant::Render()
 {
-	if (!settime) 
-	{
-		y0 = y + 6;
-		risetime = 0;
-		settime = true;
-	}
 	CAnimations::GetInstance()->Get(ID_ANI_PIRANHAPLANT)->Render(x, y);
 }
 

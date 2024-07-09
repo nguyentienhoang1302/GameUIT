@@ -54,7 +54,6 @@ class CFPlant : public CGameObject
 protected:
 	ULONGLONG risetime;
 
-	bool settime = false;
 	float y0;
 	int type;
 	bool isShooting = false;
