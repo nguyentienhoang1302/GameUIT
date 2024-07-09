@@ -7,23 +7,6 @@ CKoopa::CKoopa(float x, float y, int type) :CGameObject(x, y)
 {
 	this->type = type;
 	SetState(KOOPA_STATE_WAIT);
-	//this->ax = 0;
-	//this->ay = KOOPA_GRAVITY;
-	//walk_start = -1;
-	//die_start = -1;
-	//jumpTimer = 0;
-	//if (type == 1)
-	//{
-	//	SetState(KOOPA_STATE_WALK);
-	//}
-	//else if (type == 2)
-	//{
-	//	SetState(KOOPA_STATE_WINGED_WALK);
-	//}
-	//else if (type == 3)
-	//{
-	//	SetState(KOOPA_STATE_RED_WALK);
-	//}
 }
 
 void CKoopa::GetBoundingBox(float& left, float& top, float& right, float& bottom)
@@ -90,6 +73,7 @@ void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 	if (state == KOOPA_STATE_WINGED_JUMP)
 	{
+		jumpTimer++;
 		if (jumpTimer == 5)
 		{
 			SetState(KOOPA_STATE_WINGED_WALK);
@@ -100,7 +84,7 @@ void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			SetState(KOOPA_STATE_WINGED_JUMP);
 		}
 	}
-	if ((GetTickCount64() - walk_start > 1000) && state == KOOPA_STATE_WINGED_WALK)
+	if ((GetTickCount64() - walk_start > 600) && state == KOOPA_STATE_WINGED_WALK)
 	{
 		SetState(KOOPA_STATE_WINGED_JUMP);
 	}
@@ -197,15 +181,7 @@ void CKoopa::SetState(int state)
 		vx = -KOOPA_WALKING_SPEED;
 		break;
 	case KOOPA_STATE_WINGED_JUMP:
-		jumpTimer++;
-		if (jumpTimer == 5)
-		{
-			vy = -KOOPA_VY_JUMP_MAX;
-		}
-		else
-		{
-			vy = -KOOPA_VY_JUMP;
-		}
+		vy = -KOOPA_VY_JUMP;
 		break;
 	case KOOPA_STATE_RED_SHELL:
 		die_start = GetTickCount64();

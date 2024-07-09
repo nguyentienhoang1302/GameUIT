@@ -65,6 +65,7 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 	if (state == GOOMBA_STATE_WINGED_JUMP)
 	{
+		jumpTimer++;
 		if (jumpTimer == 5)
 		{
 			SetState(GOOMBA_STATE_WINGED_WALK);
@@ -150,15 +151,7 @@ void CGoomba::SetState(int state)
 			vx = -GOOMBA_WALKING_SPEED;
 			break;
 		case GOOMBA_STATE_WINGED_JUMP:
-			jumpTimer++;
-			if (jumpTimer == 5)
-			{
-				vy = -GOOMBA_VY_JUMP_MAX;
-			}
-			else
-			{
-				vy = -GOOMBA_VY_JUMP;
-			}
+			vy = -GOOMBA_VY_JUMP;
 			break;
 		case GOOMBA_STATE_WAITING:
 			vx = 0;
