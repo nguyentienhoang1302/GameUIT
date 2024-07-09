@@ -23,6 +23,7 @@
 #define KOOPA_STATE_RED_WALK 600
 #define KOOPA_STATE_RED_SHELL 700
 #define KOOPA_STATE_RED_SPIN 800
+#define KOOPA_STATE_RED_WALK2 900
 
 #define ID_ANI_KOOPA_WAIT 31000
 #define ID_ANI_KOOPA_WALK 31000
@@ -33,6 +34,7 @@
 #define ID_ANI_KOOPA_RED_WALK 36000
 #define ID_ANI_KOOPA_RED_SHELL 37000
 #define ID_ANI_KOOPA_RED_SPIN 38000
+#define ID_ANI_KOOPA_RED_WALK2 39000
 
 class CKoopa : public CGameObject
 {
@@ -54,6 +56,8 @@ protected:
 	virtual void OnNoCollision(DWORD dt);
 
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
+
+	bool IsOnPlatform(vector<LPGAMEOBJECT>* coObjects);
 
 public:
 	CKoopa(float x, float y, int type); //1 - Koopa, 2 - ParaKoopa, 3 - Red Koopa

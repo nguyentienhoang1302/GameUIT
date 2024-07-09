@@ -66,10 +66,57 @@ void CKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
 	}
 }
 
+bool CKoopa::IsOnPlatform(vector<LPGAMEOBJECT>* coObjects)
+{
+	float l, t, r, b;
+	GetBoundingBox(l, t, r, b);
+
+	float x0;
+	if (vx > 0)
+	{
+		x0 = r;
+	}
+	else
+	{
+		x0 = l;
+	}
+	float y0 = b + 1;
+
+	for (int i = 0; i < coObjects->size(); i++)
+	{
+		LPGAMEOBJECT obj = coObjects->at(i);
+		if (obj->IsBlocking())
+		{
+			float objL, objT, objR, objB;
+			obj->GetBoundingBox(objL, objT, objR, objB);
+			if (x0 >= objL && x0 <= objR && y0 >= objT && y0 <= objB)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	vy += ay * dt;
 	vx += ax * dt;
+
+	if (state == KOOPA_STATE_RED_WALK) {
+		if (!IsOnPlatform(coObjects))
+		{
+			SetState(KOOPA_STATE_RED_WALK2);
+		}
+	}
+
+	if (state == KOOPA_STATE_RED_WALK2) {
+		if (!IsOnPlatform(coObjects))
+		{
+			SetState(KOOPA_STATE_RED_WALK);
+		}
+	}
+
 
 	if (state == KOOPA_STATE_WINGED_JUMP)
 	{
@@ -154,6 +201,10 @@ void CKoopa::Render()
 	{
 		aniId = ID_ANI_KOOPA_WAIT;
 	}
+	else if (state == KOOPA_STATE_RED_WALK2)
+	{
+		aniId = ID_ANI_KOOPA_RED_WALK2;
+	}
 	CAnimations* animations = CAnimations::GetInstance();
 	animations->Get(aniId)->Render(x, y);
 	//CAnimations::GetInstance()->Get(aniId)->Render(x,y);
@@ -192,6 +243,10 @@ void CKoopa::SetState(int state)
 		break;
 	case KOOPA_STATE_RED_WALK:
 		vx = -KOOPA_WALKING_SPEED;
+		//vx = 0;
+		break;
+	case KOOPA_STATE_RED_WALK2:
+		vx = KOOPA_WALKING_SPEED;
 		//vx = 0;
 		break;
 	case KOOPA_STATE_SPIN:
