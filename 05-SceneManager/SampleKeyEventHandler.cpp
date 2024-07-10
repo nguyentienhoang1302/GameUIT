@@ -9,6 +9,7 @@
 void CSampleKeyHandler::OnKeyDown(int KeyCode)
 {
 	//DebugOut(L"[INFO] KeyDown: %d\n", KeyCode);
+	LPGAME game = CGame::GetInstance();
 	CMario* mario = (CMario *)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer(); 
 
 	switch (KeyCode)
@@ -21,7 +22,7 @@ void CSampleKeyHandler::OnKeyDown(int KeyCode)
 		{
 			mario->SetState(MARIO_STATE_JUMP);
 		}
-		else if (mario->GetLevel() == MARIO_LEVEL_RACCOON)
+		else if (mario->GetLevel() == MARIO_LEVEL_RACCOON && game->IsKeyDown(DIK_A) && (abs(mario->Getax()) == MARIO_ACCEL_RUN_X))
 		{
 			mario->SetState(MARIO_STATE_FLY);
 		}
