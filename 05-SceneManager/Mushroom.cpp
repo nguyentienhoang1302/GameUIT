@@ -1,6 +1,11 @@
 #include "Mushroom.h"
 
-CMushroom::CMushroom(float x, float y) : CGameObject(x, y) {
+CMushroom::CMushroom(float x, float y, int type): CGameObject(x, y) {
+	this->type = type;
+	if (type == 1)
+		aniID = ID_ANI_MUSHROOM_RED;
+	else if (type == 2)
+		aniID = ID_ANI_MUSHROOM_GREEN;
 	vx = 0;
 	vy = -0.016f;
 	ay = 0;
@@ -9,7 +14,7 @@ CMushroom::CMushroom(float x, float y) : CGameObject(x, y) {
 void CMushroom::Render()
 {
 	CAnimations* animations = CAnimations::GetInstance();
-	animations->Get(ID_ANI_MUSHROOM)->Render(x, y);
+	animations->Get(aniID)->Render(x, y);
 	//RenderBoundingBox();
 	if (!setAppear) {
 		start = GetTickCount64();

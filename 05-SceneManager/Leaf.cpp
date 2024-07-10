@@ -48,7 +48,7 @@ void CLeaf::Render()
 
 	CAnimations* animations = CAnimations::GetInstance();
 	animations->Get(aniId)->Render(x, y);
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 void CLeaf::SetState(int state)

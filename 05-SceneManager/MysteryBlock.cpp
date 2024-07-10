@@ -58,12 +58,12 @@ void CMBlock::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		subObject->SetPosition(x, y - 16);
 	}
 	else if (content == 2) {
-		subObject = new CMushroom(x, y);
+		subObject = new CMushroom(x, y, 1);
 	}
 	else if (content == 3) {
 		if (CGame::GetInstance()->GetCurrentScene()->Mlevel == MARIO_LEVEL_SMALL)
 		{
-			subObject = new CMushroom(x, y);
+			subObject = new CMushroom(x, y, 1);
 		}
 		else if (CGame::GetInstance()->GetCurrentScene()->Mlevel == MARIO_LEVEL_BIG)
 		{
@@ -75,6 +75,10 @@ void CMBlock::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			subObject = new CLeaf(x, y);
 			subObject->SetPosition(x, y - 16);
 		}
+	}
+	else if (content == 4)
+	{
+		subObject = new CMushroom(x, y, 2);
 	}
 
 	if (state == MBLOCK_STATE_EMPTY) {

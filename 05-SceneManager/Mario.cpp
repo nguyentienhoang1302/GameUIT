@@ -312,12 +312,20 @@ void CMario::OnCollisionWithMBlock(LPCOLLISIONEVENT e)
 void CMario::OnCollisionWithMushroom(LPCOLLISIONEVENT e)
 {
 	e->obj->Delete();
-	if (level == MARIO_LEVEL_SMALL || level == MARIO_LEVEL_RACCOON)
+	CMushroom* mushroom = (CMushroom*)(e->obj);
+	if (mushroom->GetType() == 1)
 	{
-		StartUntouchable();
-		y -= 8;
-		level = MARIO_LEVEL_BIG;
-		StartUntouchable();
+		if (level == MARIO_LEVEL_SMALL || level == MARIO_LEVEL_RACCOON)
+		{
+			StartUntouchable();
+			y -= 8;
+			level = MARIO_LEVEL_BIG;
+			StartUntouchable();
+		}
+	}
+	else if (mushroom->GetType() == 2)
+	{
+		this->life++;
 	}
 }
 
@@ -531,24 +539,29 @@ void CMario::Render()
 
 	//RenderBoundingBox();
 	
-	DebugOutTitle(L"Coins: %d", coin);
+	//DebugOutTitle(L"Coins: %d", coin);
 	//DebugOutTitle(L"Life: %d", life);
+	DebugOutTitle(L"Coins: %d | Life: %d", coin, life);
 }
 
 void CMario::SetState(int state)
 {
 	// DIE is the end state, cannot be changed! 
-	if (this->state == MARIO_STATE_DIE) return; 
-	//if (this->state == MARIO_STATE_DIE)
-	//{
-	//	if (life > 0)
-	//	{
-	//		life--;
-	//		//add crate new game here
-	//	}
-	//	else
-	//		return;
-	//}
+	//if (this->state == MARIO_STATE_DIE) return; 
+	if (this->state == MARIO_STATE_DIE)
+	{
+		if (life > 0)
+		{
+			life--;
+			SetLevel(MARIO_LEVEL_SMALL);
+			this->SetPosition(xStart, yStart);
+		}
+		else
+		{
+			MessageBox(NULL, TEXT("Game Over!"), TEXT("Game Over"), MB_OK | MB_ICONINFORMATION);
+			return;
+		}
+	}
 
 	switch (state)
 	{

@@ -34,7 +34,7 @@ protected:
 
 public:
 	CMBlock(float x, float y,int aniID, int content);
-	//content: 1-coin 2-mushroom 3-leaf
+	//content: 1-coin 2-mushroom 3-leaf, 4-greenmushroom
 
 	virtual void SetState(int state);
 

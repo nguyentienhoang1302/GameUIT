@@ -4,7 +4,8 @@
 #include "Animation.h"
 #include "Animations.h"
 
-#define ID_ANI_MUSHROOM 110000
+#define ID_ANI_MUSHROOM_RED 110000
+#define ID_ANI_MUSHROOM_GREEN 111000
 #define MUSHROOM_GRAVITY 0.001f
 #define MUSHROOM_WALKING_SPEED 0.06f
 
@@ -17,6 +18,8 @@ protected:
 	float ax;
 	float ay;
 	bool setAppear = false;
+	int aniID;
+	int type;
 
 	ULONGLONG start;
 
@@ -31,6 +34,6 @@ protected:
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 
 public:
-	CMushroom(float x, float y);
-
+	CMushroom(float x, float y, int type); //1 - Red, 2 - Green
+	int GetType() { return type; }
 };
