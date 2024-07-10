@@ -2,6 +2,8 @@
 #include "Brick.h"
 #include "Goomba.h"
 #include "MysteryBlock.h"
+#include "Mario.h"
+#include "PlayScene.h"
 
 CKoopa::CKoopa(float x, float y, int type) :CGameObject(x, y)
 {
@@ -322,8 +324,13 @@ void CKoopa::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 void CKoopa::OnCollisionWithMBlock(LPCOLLISIONEVENT e)
 {
 	CMBlock* mysteryblock = (CMBlock*)(e->obj);
-	if (e->ny > 0 && mysteryblock->GetState() == MBLOCK_STATE_DEFAULT) {
+	if (e->nx != 0 && mysteryblock->GetState() == MBLOCK_STATE_DEFAULT) {
 		mysteryblock->SetState(MBLOCK_STATE_EMPTY);
+		if (mysteryblock->getContent() == 1)
+		{
+			CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+			mario->increaseCoin();
+		}
 	}
 }
 

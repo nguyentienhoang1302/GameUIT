@@ -33,6 +33,8 @@
 #define MARIO_STATE_SIT				600
 #define MARIO_STATE_SIT_RELEASE		601
 
+#define MARIO_STATE_FLY			700
+
 
 #pragma region ANIMATION_ID
 
@@ -102,9 +104,6 @@
 #define ID_ANI_MARIO_RACCOON_BRACE_RIGHT 2601
 #define ID_ANI_MARIO_RACCOON_BRACE_LEFT 2602
 
-#define ID_ANI_MARIO_RACCOON_SLOWFALL_RIGHT 2701
-#define ID_ANI_MARIO_RACCOON_SLOWFALL_LEFT 2702
-
 #pragma endregion
 
 #define GROUND_Y 160.0f
@@ -114,7 +113,7 @@
 
 #define	MARIO_LEVEL_SMALL	1
 #define	MARIO_LEVEL_BIG		2
-#define	MARIO_LEVEL_RACOON		3
+#define	MARIO_LEVEL_RACCOON		3
 
 #define MARIO_BIG_BBOX_WIDTH  14
 #define MARIO_BIG_BBOX_HEIGHT 24
@@ -126,12 +125,12 @@
 #define MARIO_SMALL_BBOX_WIDTH  13
 #define MARIO_SMALL_BBOX_HEIGHT 12
 
-#define MARIO_RACCOON_BBOX_WIDTH  18
-#define MARIO_RACCOON_BBOX_HEIGHT 26
-#define MARIO_RACCOON_SITTING_BBOX_WIDTH  16
-#define MARIO_RACCOON_SITTING_BBOX_HEIGHT 16
-
-#define MARIO_SIT_HEIGHT_ADJUST_RACOON ((MARIO_RACCOON_BBOX_HEIGHT-MARIO_RACCOON_SITTING_BBOX_HEIGHT)/2)
+//#define MARIO_RACCOON_BBOX_WIDTH  18
+//#define MARIO_RACCOON_BBOX_HEIGHT 26
+//#define MARIO_RACCOON_SITTING_BBOX_WIDTH  16
+//#define MARIO_RACCOON_SITTING_BBOX_HEIGHT 16
+//
+//#define MARIO_SIT_HEIGHT_ADJUST_RACOON ((MARIO_RACCOON_BBOX_HEIGHT-MARIO_RACCOON_SITTING_BBOX_HEIGHT)/2)
 
 
 #define MARIO_UNTOUCHABLE_TIME 2500
@@ -146,7 +145,7 @@ class CMario : public CGameObject
 	int level; 
 	int untouchable; 
 	ULONGLONG untouchable_start;
-	BOOLEAN isOnPlatform;
+	BOOLEAN isFlying = false;
 
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
 	void OnCollisionWithCoin(LPCOLLISIONEVENT e);
@@ -162,8 +161,10 @@ class CMario : public CGameObject
 
 	int GetAniIdBig();
 	int GetAniIdSmall();
+	int GetAniIdRaccoon();
 
 public:
+	BOOLEAN isOnPlatform;
 	int coin;
 	CMario(float x, float y) : CGameObject(x, y)
 	{
@@ -179,6 +180,7 @@ public:
 		coin = 0;
 	}
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
+
 	void Render();
 	void SetState(int state);
 
@@ -191,7 +193,7 @@ public:
 
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
-
+	int GetLevel() { return level; }
 	void SetLevel(int l);
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
 
