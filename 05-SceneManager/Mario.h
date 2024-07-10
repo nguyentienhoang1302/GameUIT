@@ -166,8 +166,12 @@ class CMario : public CGameObject
 public:
 	BOOLEAN isOnPlatform;
 	int coin;
+	int life = 4;
+	float xStart, yStart;
 	CMario(float x, float y) : CGameObject(x, y)
 	{
+		xStart = x;
+		yStart = y;
 		isSitting = false;
 		maxVx = 0.0f;
 		ax = 0.0f;

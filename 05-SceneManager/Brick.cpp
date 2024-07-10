@@ -23,11 +23,11 @@ int CBrick::IsBreakable()
 		return 0;
 }
 
-int CBrick::IsHeadbutt(float nx, float ny)
-{
-	if (this->aniID == 12000)
-	{
-		if (nx == 0 && ny == -1) return 1;
-		else return 0;
-	}
-}
+//int CBrick::IsHeadbutt(float nx, float ny)
+//{
+//	if (this->aniID == 12000)
+//	{
+//		if (nx == 0 && ny == -1) return 1;
+//		else return 0;
+//	}
+//}

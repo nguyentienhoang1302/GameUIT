@@ -42,32 +42,6 @@ void CKoopa::OnNoCollision(DWORD dt)
 	y += vy * dt;
 };
 
-void CKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
-{
-	if (state == KOOPA_STATE_SPIN || state == KOOPA_STATE_RED_SPIN)
-	{
-		if (dynamic_cast<CKoopa*>(e->obj))
-			OnCollisionWithKoopa(e);
-		if (dynamic_cast<CGoomba*>(e->obj))
-			OnCollisionWithGoomba(e);
-		if (dynamic_cast<CMBlock*>(e->obj))
-			OnCollisionWithMBlock(e);
-		if (dynamic_cast<CBrick*>(e->obj))
-			OnCollisionWithBrick(e);
-	}
-
-	if (!e->obj->IsBlocking()) return;
-
-	if (e->ny != 0)
-	{
-		vy = 0;
-	}
-	else if (e->nx != 0)
-	{
-		vx = -vx;
-	}
-}
-
 bool CKoopa::IsOnPlatform(vector<LPGAMEOBJECT>* coObjects)
 {
 	float l, t, r, b;
@@ -91,13 +65,47 @@ bool CKoopa::IsOnPlatform(vector<LPGAMEOBJECT>* coObjects)
 		{
 			float objL, objT, objR, objB;
 			obj->GetBoundingBox(objL, objT, objR, objB);
-			if (x0 >= objL && x0 <= objR && y0 >= objT && y0 <= objB)
+			if (x0 >= objL - 8 && x0 <= objR + 8 && y0 >= objT && y0 <= objB)
 			{
 				return true;
 			}
 		}
 	}
 	return false;
+}
+
+void CKoopa::OnCollisionWith(LPCOLLISIONEVENT e)
+{
+	if (state == KOOPA_STATE_SPIN || state == KOOPA_STATE_RED_SPIN)
+	{
+		if (dynamic_cast<CKoopa*>(e->obj))
+			OnCollisionWithKoopa(e);
+		if (dynamic_cast<CGoomba*>(e->obj))
+			OnCollisionWithGoomba(e);
+		if (dynamic_cast<CMBlock*>(e->obj))
+			OnCollisionWithMBlock(e);
+		if (dynamic_cast<CBrick*>(e->obj))
+			OnCollisionWithBrick(e);
+	}
+
+	if (!e->obj->IsBlocking()) return;
+
+	if (e->ny != 0)
+	{
+		vy = 0;
+	}
+	else if (e->nx != 0)
+	{
+		vx = -vx;
+		if (state == KOOPA_STATE_RED_WALK)
+		{
+			SetState(KOOPA_STATE_RED_WALK2);
+		}
+		else if (state == KOOPA_STATE_RED_WALK2)
+		{
+			SetState(KOOPA_STATE_RED_WALK);
+		}
+	}
 }
 
 void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
@@ -118,7 +126,6 @@ void CKoopa::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			SetState(KOOPA_STATE_RED_WALK);
 		}
 	}
-
 
 	if (state == KOOPA_STATE_WINGED_JUMP)
 	{

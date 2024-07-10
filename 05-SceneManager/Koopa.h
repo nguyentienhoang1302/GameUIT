@@ -55,9 +55,11 @@ protected:
 	virtual int IsBlocking() { return 0; }
 	virtual void OnNoCollision(DWORD dt);
 
+	bool IsOnPlatform(vector<LPGAMEOBJECT>* coObjects);
+
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 
-	bool IsOnPlatform(vector<LPGAMEOBJECT>* coObjects);
+	//bool IsOnPlatform(vector<LPGAMEOBJECT>* coObjects);
 
 public:
 	CKoopa(float x, float y, int type); //1 - Koopa, 2 - ParaKoopa, 3 - Red Koopa

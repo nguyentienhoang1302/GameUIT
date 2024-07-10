@@ -70,6 +70,11 @@ void CMBlock::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			subObject = new CLeaf(x, y);
 			subObject->SetPosition(x, y - 16);
 		}
+		else if (CGame::GetInstance()->GetCurrentScene()->Mlevel == MARIO_LEVEL_RACCOON)
+		{
+			subObject = new CLeaf(x, y);
+			subObject->SetPosition(x, y - 16);
+		}
 	}
 
 	if (state == MBLOCK_STATE_EMPTY) {

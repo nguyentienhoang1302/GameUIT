@@ -14,6 +14,7 @@
 #include "Fireball.h"
 #include "FirePiranhaPlant.h"
 #include "Leaf.h"
+#include "PlayScene.h"
 
 #include "Collision.h"
 
@@ -25,6 +26,23 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	CGame::GetInstance()->GetCurrentScene()->xMario = x;
 	CGame::GetInstance()->GetCurrentScene()->yMario = y;
 	CGame::GetInstance()->GetCurrentScene()->Mlevel = level;
+
+	if (this->x < 0)
+	{
+		this->x = 0;
+	}
+	if (this->x > 2810)
+	{
+		this->x = 2810;
+	}
+	if (this->y > 194)
+	{
+		SetState(MARIO_STATE_DIE);
+	}
+	if (this->y < -230)
+	{
+		this->y = -230;
+	}
 
 	if (abs(vx) > abs(maxVx)) vx = maxVx;
 
@@ -266,7 +284,7 @@ void CMario::OnCollisionWithLeaf(LPCOLLISIONEVENT e)
 void CMario::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 {
 	CBrick* brick = (CBrick*)(e->obj);
-	if ((brick->IsBreakable() == 1 && level == MARIO_LEVEL_BIG)|| (brick->IsBreakable() == 1 && level == MARIO_LEVEL_RACCOON))
+	if ((brick->IsBreakable() == 1 && level == MARIO_LEVEL_BIG) || (brick->IsBreakable() == 1 && level == MARIO_LEVEL_RACCOON && isFlying == false))
 	{
 		if (e->ny > 0)
 			e->obj->Delete();
@@ -514,12 +532,23 @@ void CMario::Render()
 	//RenderBoundingBox();
 	
 	DebugOutTitle(L"Coins: %d", coin);
+	//DebugOutTitle(L"Life: %d", life);
 }
 
 void CMario::SetState(int state)
 {
 	// DIE is the end state, cannot be changed! 
 	if (this->state == MARIO_STATE_DIE) return; 
+	//if (this->state == MARIO_STATE_DIE)
+	//{
+	//	if (life > 0)
+	//	{
+	//		life--;
+	//		//add crate new game here
+	//	}
+	//	else
+	//		return;
+	//}
 
 	switch (state)
 	{
@@ -562,9 +591,11 @@ void CMario::SetState(int state)
 		}
 		break;
 	case MARIO_STATE_FLY:
+		isFlying = true;
 		vy = -0.4f;
 		break;
 	case MARIO_STATE_RELEASE_JUMP:
+		if (isOnPlatform) isFlying = false;
 		if (vy < 0) vy += MARIO_JUMP_SPEED_Y / 2;
 		break;
 

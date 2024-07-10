@@ -21,5 +21,5 @@ public:
 	void Update(DWORD dt) {}
 	void GetBoundingBox(float& l, float& t, float& r, float& b);
 	int IsBreakable();
-	int IsHeadbutt(float nx, float ny);
+	//int IsHeadbutt(float nx, float ny);
 };

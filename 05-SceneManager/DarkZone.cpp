@@ -15,7 +15,7 @@ void CDarkZone::Render()
 
 	CSprites* s = CSprites::GetInstance();
 
-	for (int j = 1; j < this->height - 1; j++)
+	for (int j = 0; j < this->height; j++)
 	{
 		s->Get(this->spriteIdBegin)->Draw(xx, yy);
 		xx += this->cellWidth;
@@ -23,7 +23,6 @@ void CDarkZone::Render()
 		{
 			s->Get(this->spriteIdMiddle)->Draw(xx, yy);
 			xx += this->cellWidth;
-
 		}
 		xx = x;
 		yy -= this->cellHeight;

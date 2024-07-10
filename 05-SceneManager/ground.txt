@@ -13,5 +13,8 @@
 #bottomright
 56000	460	273	475	288	30
 
+#smileycloud
+57000	222	188	237	203	30
+
 # ani_id	sprite1_id	time1	sprite2_id	time2	...
 [ANIMATIONS]
