@@ -295,6 +295,7 @@ void CMario::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 {
 	CPortal* p = (CPortal*)e->obj;
 	CGame::GetInstance()->InitiateSwitchScene(p->GetSceneId());
+	//this->SetPosition(p->GetxM(), p->GetyM());
 }
 
 void CMario::OnCollisionWithMBlock(LPCOLLISIONEVENT e)
@@ -539,8 +540,6 @@ void CMario::Render()
 
 	//RenderBoundingBox();
 	
-	//DebugOutTitle(L"Coins: %d", coin);
-	//DebugOutTitle(L"Life: %d", life);
 	DebugOutTitle(L"Coins: %d | Life: %d", coin, life);
 }
 

@@ -324,7 +324,8 @@ void CKoopa::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 	CBrick* brick = (CBrick*)(e->obj);
 	if (brick->IsBreakable() == 1)
 	{
-		e->obj->Delete();
+		if (e->nx != 0)
+			e->obj->Delete();
 	}
 }
 

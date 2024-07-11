@@ -69,9 +69,6 @@
     <ClCompile Include="Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Portal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Tree.cpp">
       <Filter>Backgorund</Filter>
     </ClCompile>
@@ -129,6 +126,9 @@
     <ClCompile Include="Leaf.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -180,9 +180,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Portal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tree.h">
@@ -240,6 +237,9 @@
       <Filter>Backgorund</Filter>
     </ClInclude>
     <ClInclude Include="Leaf.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Portal.h">
       <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
