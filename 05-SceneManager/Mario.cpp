@@ -239,7 +239,7 @@ void CMario::OnCollisionWithKoopa(LPCOLLISIONEVENT e)
 void CMario::OnCollisionWithCoin(LPCOLLISIONEVENT e)
 {
 	e->obj->Delete();
-	coin++;
+	CGame::GetInstance()->coin++;
 }
 
 void CMario::OnCollisionWithPPlant(LPCOLLISIONEVENT e)
@@ -569,7 +569,7 @@ void CMario::Render()
 
 	//RenderBoundingBox();
 	
-	DebugOutTitle(L"Coins: %d | Life: %d", coin, CGame::GetInstance()->life);
+	DebugOutTitle(L"Coins: %d | Life: %d", CGame::GetInstance()->coin, CGame::GetInstance()->life);
 }
 
 void CMario::SetState(int state)
@@ -714,7 +714,7 @@ void CMario::GetBoundingBox(float &left, float &top, float &right, float &bottom
 
 void CMario::increaseCoin()
 {
-	coin++;
+	CGame::GetInstance()->coin++;
 }
 
 void CMario::SetLevel(int l)

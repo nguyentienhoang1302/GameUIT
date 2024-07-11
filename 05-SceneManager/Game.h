@@ -62,6 +62,7 @@ class CGame
 
 public:
 	int life = 4;
+	int coin = 0;
 	// Init DirectX, Sprite Handler
 	void Init(HWND hWnd, HINSTANCE hInstance);
 

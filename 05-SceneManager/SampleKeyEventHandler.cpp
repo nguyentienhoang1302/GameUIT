@@ -46,6 +46,7 @@ void CSampleKeyHandler::OnKeyDown(int KeyCode)
 	case DIK_R: // reset
 		CGame::GetInstance()->ReloadScene();
 		CGame::GetInstance()->life = 4;
+		CGame::GetInstance()->coin = 0;
 		break;
 	case DIK_SPACE:
 		if (CGame::GetInstance()->GetCurrentScene()->id == 7)

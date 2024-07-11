@@ -157,8 +157,7 @@ public:
 	BOOLEAN isOnPlatform;
 	BOOLEAN isFlying = false;
 	BOOLEAN isHovering = false;
-	int coin;
-	//int life = 4;
+
 	float xStart, yStart;
 	CMario(float x, float y) : CGameObject(x, y)
 	{
@@ -173,7 +172,6 @@ public:
 		untouchable = 0;
 		untouchable_start = -1;
 		isOnPlatform = false;
-		coin = 0;
 	}
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 
