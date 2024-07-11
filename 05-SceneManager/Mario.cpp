@@ -345,7 +345,7 @@ void CMario::OnCollisionWithMushroom(LPCOLLISIONEVENT e)
 	}
 	else if (mushroom->GetType() == 2)
 	{
-		this->life++;
+		CGame::GetInstance()->life++;
 	}
 }
 
@@ -569,24 +569,26 @@ void CMario::Render()
 
 	//RenderBoundingBox();
 	
-	DebugOutTitle(L"Coins: %d | Life: %d", coin, life);
+	DebugOutTitle(L"Coins: %d | Life: %d", coin, CGame::GetInstance()->life);
 }
 
 void CMario::SetState(int state)
 {
 	// DIE is the end state, cannot be changed! 
-	//if (this->state == MARIO_STATE_DIE) return; 
 	if (this->state == MARIO_STATE_DIE)
 	{
-		if (life > 0)
+		if (CGame::GetInstance()->life > 0)
 		{
-			life--;
-			SetLevel(MARIO_LEVEL_SMALL);
-			this->SetPosition(xStart, yStart);
+			CGame::GetInstance()->life--;
+			//ULONGLONG die_start = GetTickCount64();
+			//if (GetTickCount64() - die_start > 3000)
+			//{
+				CGame::GetInstance()->ReloadScene();
+			//}
 		}
 		else
 		{
-			MessageBox(NULL, TEXT("Game Over!"), TEXT("Game Over"), MB_OK | MB_ICONINFORMATION);
+			//MessageBox(NULL, TEXT("Game Over!"), TEXT("Game Over"), MB_OK | MB_ICONINFORMATION);
 			return;
 		}
 	}

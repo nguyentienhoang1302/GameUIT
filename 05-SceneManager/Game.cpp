@@ -510,7 +510,7 @@ void CGame::Load(LPCWSTR gameFile)
 
 void CGame::SwitchScene()
 {
-	if (next_scene < 0 || next_scene == current_scene) return; 
+	if (next_scene < 0  || next_scene == current_scene) return;
 
 	DebugOut(L"[INFO] Switching to scene %d\n", next_scene);
 
@@ -521,6 +521,18 @@ void CGame::SwitchScene()
 
 	current_scene = next_scene;
 	LPSCENE s = scenes[next_scene];
+	this->SetKeyHandler(s->GetKeyEventHandler());
+	s->Load();
+}
+
+void CGame::ReloadScene()
+{
+	int flag = current_scene;
+	scenes[current_scene]->Unload();
+
+	CSprites::GetInstance()->Clear();
+	CAnimations::GetInstance()->Clear();
+	LPSCENE s = scenes[flag];
 	this->SetKeyHandler(s->GetKeyEventHandler());
 	s->Load();
 }

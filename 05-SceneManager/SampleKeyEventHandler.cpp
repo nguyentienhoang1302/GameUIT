@@ -44,7 +44,8 @@ void CSampleKeyHandler::OnKeyDown(int KeyCode)
 		mario->SetState(MARIO_STATE_DIE);
 		break;
 	case DIK_R: // reset
-		//Reload();
+		CGame::GetInstance()->ReloadScene();
+		CGame::GetInstance()->life = 4;
 		break;
 	case DIK_SPACE:
 		if (CGame::GetInstance()->GetCurrentScene()->id == 7)

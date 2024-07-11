@@ -21,7 +21,7 @@ class CPlayScene: public CScene
 	static CPlayScene* __instance;
 protected: 
 	// A play scene has to have player, right? 
-	LPGAMEOBJECT player;					
+	LPGAMEOBJECT player;
 	vector<LPGAMEOBJECT> objects;
 
 	void _ParseSection_SPRITES(string line);
