@@ -48,7 +48,7 @@ void CSampleKeyHandler::OnKeyDown(int KeyCode)
 		break;
 	case DIK_SPACE:
 		if (CGame::GetInstance()->GetCurrentScene()->id == 7)
-			CGame::GetInstance()->InitiateSwitchScene(5);
+			CGame::GetInstance()->InitiateSwitchScene(8);
 		break;
 	}
 }

@@ -28,6 +28,9 @@
     <Filter Include="Intro">
       <UniqueIdentifier>{df1a3e63-87ad-476b-931b-335541cb069d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Stage Select">
+      <UniqueIdentifier>{0d3fae68-3d95-4cb6-b544-5786b14fbd59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -140,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="Title.cpp">
       <Filter>Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="StageSelect.cpp">
+      <Filter>Stage Select</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +268,9 @@
     </ClInclude>
     <ClInclude Include="Title.h">
       <Filter>Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelect.h">
+      <Filter>Stage Select</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

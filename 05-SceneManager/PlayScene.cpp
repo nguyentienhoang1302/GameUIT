@@ -19,6 +19,7 @@
 #include "IntroBackground.h"
 #include "Curtain.h"
 #include "Title.h"
+#include "StageSelect.h"
 
 #include "SampleKeyEventHandler.h"
 
@@ -267,6 +268,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_INTRO_BACKGROUND: obj = new CIntrobackground(x, y); break;
 	case OBJECT_TYPE_CURTAIN: obj = new CCurtain(x, y); break;
 	case OBJECT_TYPE_TITLE: obj = new CTitle(x, y); break;
+	case OBJECT_TYPE_STAGE_SELECT: obj = new CSSelect(x, y); break;
 
 	default:
 		DebugOut(L"[ERROR] Invalid object type: %d\n", object_type);
@@ -392,7 +394,6 @@ void CPlayScene::Update(DWORD dt)
 	if (CGame::GetInstance()->GetCurrentScene()->id == 5)
 	{
 		if (cx < 0) cx = 0;
-		//if (cx > 2508) cx = 2508;
 		if (cx > 2575) cx = 2575;
 		if (cy > 0) cy = 0;
 		if (cy < -230) cy = -230;
@@ -401,9 +402,14 @@ void CPlayScene::Update(DWORD dt)
 	{
 		if (cx < 0) cx = 0;
 		if (cx > 504) cx = 504;
-		cy = -16;
+		cy = 16;
 	}
 	else if (CGame::GetInstance()->GetCurrentScene()->id == 7)
+	{
+		cx = 8;
+		cy = 22;
+	}
+	else if (CGame::GetInstance()->GetCurrentScene()->id == 8)
 	{
 		cx = 8;
 		cy = 22;

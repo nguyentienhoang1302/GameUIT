@@ -179,6 +179,7 @@
     <ClCompile Include="Shadow.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sprites.cpp" />
+    <ClCompile Include="StageSelect.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="Tree.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="Shadow.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Sprites.h" />
+    <ClInclude Include="StageSelect.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Title.h" />
