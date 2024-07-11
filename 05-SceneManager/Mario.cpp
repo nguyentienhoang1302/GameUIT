@@ -27,22 +27,35 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	CGame::GetInstance()->GetCurrentScene()->yMario = y;
 	CGame::GetInstance()->GetCurrentScene()->Mlevel = level;
 
-	if (this->x < 0)
+	if (CGame::GetInstance()->GetCurrentScene()->id == 7)
 	{
-		this->x = 0;
+		if (this->x < 0)
+			this->x = 0;
+		if (this->x > 258)
+			this->x = 258;
 	}
-	if (this->x > 2810)
+	else
 	{
-		this->x = 2810;
+		if (this->x < 0)
+		{
+			this->x = 0;
+		}
+		if (this->x > 2810)
+		{
+			this->x = 2810;
+		}
+		if (this->y > 194)
+		{
+			SetState(MARIO_STATE_DIE);
+		}
+		if (this->y < -230)
+		{
+			this->y = -230;
+		}
+
 	}
-	if (this->y > 194)
-	{
-		SetState(MARIO_STATE_DIE);
-	}
-	if (this->y < -230)
-	{
-		this->y = -230;
-	}
+
+
 
 	if (abs(vx) > abs(maxVx)) vx = maxVx;
 
@@ -469,15 +482,17 @@ int CMario::GetAniIdRaccoon()
 		{
 			if (nx >= 0)
 			{
-				if (vy >= 0)
-					aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_RIGHT_DOWN;
-				else aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_RIGHT_UP;
+				//if (vy >= 0)
+				//	aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_RIGHT_DOWN;
+				//else aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_RIGHT_UP;
+				aniId = ID_ANI_MARIO_RACCOON_FLY_RIGHT;
 			}
 			else
 			{
-				if (vy >= 0)
-					aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_LEFT_DOWN;
-				else aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_LEFT_UP;
+				//if (vy >= 0)
+				//	aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_LEFT_DOWN;
+				//else aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_LEFT_UP;
+				aniId = ID_ANI_MARIO_RACCOON_FLY_LEFT;
 			}
 		}
 		else
@@ -614,13 +629,14 @@ void CMario::SetState(int state)
 		if (isSitting) break;
 		isHovering = false;
 		isFlying = true;
-		vy = -0.4f;
+		vy = -0.2f;
+		ay = 0;
 		break;
 	case MARIO_STATE_HOVER:
 		if (isSitting) break;
 		isFlying = false;
 		isHovering = true;
-		vy = 0.005f;
+		vy = 0.01f;
 		ay = 0;
 		break;
 	case MARIO_STATE_RELEASE_JUMP:

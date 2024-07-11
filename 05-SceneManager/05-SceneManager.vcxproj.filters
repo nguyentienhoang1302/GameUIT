@@ -25,6 +25,9 @@
     <Filter Include="Player">
       <UniqueIdentifier>{dfaace61-2720-4aec-b058-831cdef0e3e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Intro">
+      <UniqueIdentifier>{df1a3e63-87ad-476b-931b-335541cb069d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -128,6 +131,15 @@
     </ClCompile>
     <ClCompile Include="Portal.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroBackground.cpp">
+      <Filter>Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="Curtain.cpp">
+      <Filter>Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>Intro</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +253,15 @@
     </ClInclude>
     <ClInclude Include="Portal.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroBackground.h">
+      <Filter>Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="Curtain.h">
+      <Filter>Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>Intro</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

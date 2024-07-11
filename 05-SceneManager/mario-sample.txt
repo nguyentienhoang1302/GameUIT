@@ -1,7 +1,9 @@
 [SETTINGS]
-start	5
-width	320
-height	240
+start	7
+#width	320
+#height	240
+width	256
+height	224
 
 #id	type	file
 # type: 0: intro, 1: play scene 
@@ -9,8 +11,9 @@ height	240
 0	intro.txt
 1	scene01.txt
 2	scene02.txt
-5	scene0005.txt
+5	stage1.txt
 6	secretstage.txt
+7	introscene.txt
 
 # id	file 
 [TEXTURES]
@@ -21,3 +24,4 @@ height	240
 30	textures\tiles.png
 40	textures\tiles2.png
 50	textures\shadow.png
+60	textures\intro.png

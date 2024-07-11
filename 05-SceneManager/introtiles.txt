@@ -1,0 +1,22 @@
+# id	left	top	right	bottom	texture_id
+[SPRITES]
+
+#background
+180001	258	0	513	223	60
+#background2
+180002	516	226	771	449	60
+
+#curtain
+190001	0	0	255	185	60
+
+#title
+200001	516	0	771	185	60
+
+# ani_id	sprite1_id	time1	sprite2_id	time2	...
+[ANIMATIONS]
+181000	180001	1000
+182000	180002	1000
+
+191000	190001	1000
+
+200000	200001	1000
