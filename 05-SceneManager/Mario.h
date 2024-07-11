@@ -34,6 +34,7 @@
 #define MARIO_STATE_SIT_RELEASE		601
 
 #define MARIO_STATE_FLY			700
+#define MARIO_STATE_HOVER		701
 
 
 #pragma region ANIMATION_ID
@@ -104,6 +105,9 @@
 #define ID_ANI_MARIO_RACCOON_BRACE_RIGHT 2601
 #define ID_ANI_MARIO_RACCOON_BRACE_LEFT 2602
 
+#define ID_ANI_MARIO_RACCOON_HOVER_RIGHT 2701
+#define ID_ANI_MARIO_RACCOON_HOVER_LEFT 2702
+
 #pragma endregion
 
 #define GROUND_Y 160.0f
@@ -145,7 +149,6 @@ class CMario : public CGameObject
 	int level; 
 	int untouchable; 
 	ULONGLONG untouchable_start;
-	BOOLEAN isFlying = false;
 
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
 	void OnCollisionWithCoin(LPCOLLISIONEVENT e);
@@ -165,6 +168,8 @@ class CMario : public CGameObject
 
 public:
 	BOOLEAN isOnPlatform;
+	BOOLEAN isFlying = false;
+	BOOLEAN isHovering = false;
 	int coin;
 	int life = 4;
 	float xStart, yStart;
@@ -205,4 +210,5 @@ public:
 	void increaseCoin();
 
 	float Getax() { return ax; }
+	float Getvy() { return vy; }
 };

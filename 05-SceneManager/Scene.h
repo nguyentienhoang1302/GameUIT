@@ -9,11 +9,11 @@ class CScene
 {
 protected:
 	LPKEYEVENTHANDLER key_handler;
-	int id;
 	LPCWSTR sceneFilePath;
 
 public: 
 	float xMario, yMario;
+	int id;
 	int Mlevel;
 	CScene(int id, LPCWSTR filePath)
 	{

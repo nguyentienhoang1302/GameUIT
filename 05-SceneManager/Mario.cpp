@@ -293,15 +293,19 @@ void CMario::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 
 void CMario::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 {
-	CPortal* p = (CPortal*)e->obj;
-	CGame::GetInstance()->InitiateSwitchScene(p->GetSceneId());
-	//this->SetPosition(p->GetxM(), p->GetyM());
+	LPGAME game = CGame::GetInstance();
+	if (game->IsKeyDown(DIK_DOWN) || game->IsKeyDown(DIK_S))
+	{
+		CPortal* p = (CPortal*)e->obj;
+		CGame::GetInstance()->InitiateSwitchScene(p->GetSceneId());
+		//this->SetPosition(p->GetxM(), p->GetyM());
+	}
 }
 
 void CMario::OnCollisionWithMBlock(LPCOLLISIONEVENT e)
 {
 	CMBlock* mysteryblock = (CMBlock*)(e->obj);
-	if (e->ny > 0 && mysteryblock->GetState() == MBLOCK_STATE_DEFAULT) {
+	if (e->ny > 0 && mysteryblock->GetState() == MBLOCK_STATE_DEFAULT && isFlying == false) {
 		mysteryblock->SetState(MBLOCK_STATE_EMPTY);
 		if (mysteryblock->getContent() == 1)
 		{
@@ -479,9 +483,17 @@ int CMario::GetAniIdRaccoon()
 		else
 		{
 			if (nx >= 0)
-				aniId = ID_ANI_MARIO_RACCOON_JUMP_WALK_RIGHT;
+			{
+				if (isHovering)
+					aniId = ID_ANI_MARIO_RACCOON_HOVER_RIGHT;
+				else
+					aniId = ID_ANI_MARIO_RACCOON_JUMP_WALK_RIGHT;
+			}
 			else
-				aniId = ID_ANI_MARIO_RACCOON_JUMP_WALK_LEFT;
+				if (isHovering)
+					aniId = ID_ANI_MARIO_RACCOON_HOVER_LEFT;
+				else
+					aniId = ID_ANI_MARIO_RACCOON_JUMP_WALK_LEFT;
 		}
 	}
 	else
@@ -597,17 +609,24 @@ void CMario::SetState(int state)
 			else
 				vy = -MARIO_JUMP_SPEED_Y;
 		}
-		else if (level == MARIO_LEVEL_RACCOON)
-		{
-			SetState(MARIO_STATE_FLY);
-		}
 		break;
 	case MARIO_STATE_FLY:
+		if (isSitting) break;
+		isHovering = false;
 		isFlying = true;
 		vy = -0.4f;
 		break;
+	case MARIO_STATE_HOVER:
+		if (isSitting) break;
+		isFlying = false;
+		isHovering = true;
+		vy = 0.005f;
+		ay = 0;
+		break;
 	case MARIO_STATE_RELEASE_JUMP:
-		if (isOnPlatform) isFlying = false;
+		ay = MARIO_GRAVITY;
+		isFlying = false;
+		isHovering = false;
 		if (vy < 0) vy += MARIO_JUMP_SPEED_Y / 2;
 		break;
 

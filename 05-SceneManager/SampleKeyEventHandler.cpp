@@ -26,6 +26,12 @@ void CSampleKeyHandler::OnKeyDown(int KeyCode)
 		{
 			mario->SetState(MARIO_STATE_FLY);
 		}
+		else if (mario->GetLevel() == MARIO_LEVEL_RACCOON && !mario->isOnPlatform && mario->Getvy() > 0)// && mario->isHovering == true)
+		{
+			mario->SetState(MARIO_STATE_HOVER);
+		}
+		else
+			mario->SetState(MARIO_STATE_JUMP);
 		break;
 	case DIK_1:
 		mario->SetLevel(MARIO_LEVEL_SMALL);

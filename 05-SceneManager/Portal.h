@@ -25,4 +25,5 @@ public:
 
 	//float GetxM() { return xM; }
 	//float GetyM() { return yM; }
+	//virtual int RenderPriority() { return 2; };
 };
