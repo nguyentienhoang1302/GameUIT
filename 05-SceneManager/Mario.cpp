@@ -514,22 +514,13 @@ int CMario::GetAniIdRaccoon()
 	int aniId = -1;
 	if (!isOnPlatform)
 	{
-		if (abs(ax) == MARIO_ACCEL_RUN_X)
+		//if (abs(ax) == MARIO_ACCEL_RUN_X)
+		if(isFlying)
 		{
 			if (nx >= 0)
-			{
-				//if (vy >= 0)
-				//	aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_RIGHT_DOWN;
-				//else aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_RIGHT_UP;
 				aniId = ID_ANI_MARIO_RACCOON_FLY_RIGHT;
-			}
 			else
-			{
-				//if (vy >= 0)
-				//	aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_LEFT_DOWN;
-				//else aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_LEFT_UP;
 				aniId = ID_ANI_MARIO_RACCOON_FLY_LEFT;
-			}
 		}
 		else
 		{
@@ -614,11 +605,7 @@ void CMario::SetState(int state)
 		if (CGame::GetInstance()->life > 0)
 		{
 			CGame::GetInstance()->life--;
-			//ULONGLONG die_start = GetTickCount64();
-			//if (GetTickCount64() - die_start > 3000)
-			//{
-				CGame::GetInstance()->ReloadScene();
-			//}
+			CGame::GetInstance()->ReloadScene();
 		}
 		else
 		{

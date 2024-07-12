@@ -94,8 +94,8 @@
 #define ID_ANI_MARIO_RACCOON_JUMP_WALK_RIGHT 2301
 #define ID_ANI_MARIO_RACCOON_JUMP_WALK_LEFT 2302
 
-#define ID_ANI_MARIO_RACCOON_FLY_RIGHT 2701
-#define ID_ANI_MARIO_RACCOON_FLY_LEFT 2702
+#define ID_ANI_MARIO_RACCOON_FLY_RIGHT 2401
+#define ID_ANI_MARIO_RACCOON_FLY_LEFT 2402
 
 #define ID_ANI_MARIO_RACCOON_SIT_RIGHT 2501
 #define ID_ANI_MARIO_RACCOON_SIT_LEFT 2502
@@ -197,4 +197,5 @@ public:
 
 	float Getax() { return ax; }
 	float Getvy() { return vy; }
+	float Getvx() { return vx; }
 };

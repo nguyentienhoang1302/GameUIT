@@ -22,7 +22,7 @@ void CSampleKeyHandler::OnKeyDown(int KeyCode)
 		{
 			mario->SetState(MARIO_STATE_JUMP);
 		}
-		if (mario->GetLevel() == MARIO_LEVEL_RACCOON && game->IsKeyDown(DIK_A) && (abs(mario->Getax()) == MARIO_ACCEL_RUN_X) && mario->isFlying == false)
+		if (mario->isOnPlatform == true && mario->GetLevel() == MARIO_LEVEL_RACCOON && game->IsKeyDown(DIK_A) && (abs(mario->Getvx()) == MARIO_RUNNING_SPEED) && mario->isFlying == false) //(abs(mario->Getax()) == MARIO_ACCEL_RUN_X)
 		{
 			mario->SetState(MARIO_STATE_FLY);
 		}
