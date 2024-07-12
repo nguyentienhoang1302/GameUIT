@@ -405,9 +405,9 @@ void CPlayScene::Update(DWORD dt)
 	if (CGame::GetInstance()->GetCurrentScene()->id == 5)
 	{
 		if (cx < 0) cx = 0;
-		if (cx > 2575) cx = 2575;
+		if (cx > 2560) cx = 2560;
 		if (cy > 0) cy = 0;
-		if (cy < -230) cy = -230;
+		if (cy < -208) cy = -208;
 	}
 	else if (CGame::GetInstance()->GetCurrentScene()->id == 6)
 	{

@@ -52,7 +52,7 @@
 class CFPlant : public CGameObject
 {
 protected:
-	ULONGLONG risetime;
+	ULONGLONG timer;
 
 	float y0;
 	int type;

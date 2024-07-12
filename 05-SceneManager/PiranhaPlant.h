@@ -9,9 +9,8 @@
 class CPPlant : public CGameObject
 {
 protected:
-	ULONGLONG risetime;
+	ULONGLONG timer;
 
-	//bool settime = false;
 	float y0;
 
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);

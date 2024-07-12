@@ -21,7 +21,7 @@ protected:
 	int aniID;
 	int type;
 
-	ULONGLONG start;
+	ULONGLONG timer;
 
 	virtual void Render();
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);

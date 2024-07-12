@@ -17,7 +17,7 @@ void CMushroom::Render()
 	animations->Get(aniID)->Render(x, y);
 	//RenderBoundingBox();
 	if (!setAppear) {
-		start = GetTickCount64();
+		timer = GetTickCount64();
 		setAppear = true;
 	}
 }
@@ -38,7 +38,7 @@ void CMushroom::OnNoCollision(DWORD dt)
 
 void CMushroom::OnCollisionWith(LPCOLLISIONEVENT e)
 {
-	if (GetTickCount64() - start > 500) {
+	if (GetTickCount64() - timer > 500) {
 		if (!e->obj->IsBlocking()) return;
 		if (dynamic_cast<CMushroom*>(e->obj)) return;
 
@@ -59,7 +59,7 @@ void CMushroom::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	vy += ay * dt;
 	vx += ax * dt;
 
-	if (GetTickCount64() - start > 500) {
+	if (GetTickCount64() - timer > 500) {
 		ay = MUSHROOM_GRAVITY;
 		vx = -MUSHROOM_WALKING_SPEED;
 	}

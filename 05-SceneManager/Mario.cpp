@@ -43,9 +43,9 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		{
 			this->x = 0;
 		}
-		if (this->x > 2810)
+		if (this->x > 2800)
 		{
-			this->x = 2810;
+			this->x = 2800;
 		}
 		if (this->y > 194)
 		{

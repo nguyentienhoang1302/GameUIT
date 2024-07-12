@@ -3,7 +3,7 @@
 CPPlant::CPPlant(float x, float y) :CGameObject(x, y)
 {
 	y0 = y + 6;
-	risetime = 0;
+	timer = 0;
 }
 
 void CPPlant::GetBoundingBox(float& left, float& top, float& right, float& bottom)
@@ -19,14 +19,14 @@ void CPPlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	x += vx * dt;
 	y += vy * dt;
 
-	risetime += dt;
-	if (risetime < 4000) {
+	timer += dt;
+	if (timer < 4000) {
 		Rise();
 	}
-	else if (risetime < 8000) {
+	else if (timer < 8000) {
 		Fall();
 	}
-	else risetime = 0;
+	else timer = 0;
 
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);

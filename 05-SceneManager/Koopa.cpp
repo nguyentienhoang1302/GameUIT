@@ -343,11 +343,9 @@ void CKoopa::OnCollisionWithMBlock(LPCOLLISIONEVENT e)
 }
 
 void CKoopa::SpinLeft() {
-	//this->SetState(KOOPA_STATE_SPIN);
 	vx = KOOPA_SPINNING_SPEED;
 }
 
 void CKoopa::SpinRight() {
-	//this->SetState(KOOPA_STATE_SPIN);
 	vx = -KOOPA_SPINNING_SPEED;
 }

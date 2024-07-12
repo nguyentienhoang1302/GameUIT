@@ -8,12 +8,12 @@ CFPlant::CFPlant(float x, float y, int type) :CGameObject(x, y)
 	if (type == 1)
 	{
 		y0 = y + 6;
-		risetime = 0;
+		timer = 0;
 	}
 	else if (type == 2)
 	{
 		y0 = y + 10;
-		risetime = 0;
+		timer = 0;
 	}
 }
 
@@ -49,18 +49,18 @@ void CFPlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	{
 		x += vx * dt;
 		y += vy * dt;
-		risetime += dt;
-		if (risetime < 2000) {
+		timer += dt;
+		if (timer < 2000) {
 			Rise();
 		}
-		else if (risetime < 5000) {
+		else if (timer < 5000) {
 			Shoot();
 		}
-		else if (risetime < 8000) {
+		else if (timer < 8000) {
 			isShooting = false;
 			Fall();
 		}
-		else risetime = 0;
+		else timer = 0;
 
 		float x1 = CGame::GetInstance()->GetCurrentScene()->xMario;
 		float y1 = CGame::GetInstance()->GetCurrentScene()->yMario;
