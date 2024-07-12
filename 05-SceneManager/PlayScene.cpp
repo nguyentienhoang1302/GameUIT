@@ -20,6 +20,8 @@
 #include "Curtain.h"
 #include "Title.h"
 #include "StageSelect.h"
+#include "DarkBox.h"
+#include "GiftSelect.h"
 
 #include "SampleKeyEventHandler.h"
 
@@ -269,6 +271,15 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_CURTAIN: obj = new CCurtain(x, y); break;
 	case OBJECT_TYPE_TITLE: obj = new CTitle(x, y); break;
 	case OBJECT_TYPE_STAGE_SELECT: obj = new CSSelect(x, y); break;
+
+	case OBJECT_TYPE_DARKBOX:
+	{
+		int aniId = (int)atoi(tokens[3].c_str());
+		obj = new CDBox(x, y, aniId);
+		break;
+	}
+
+	case OBJECT_TYPE_GIFTSELECT: obj = new CGSelect(x, y); break;
 
 	default:
 		DebugOut(L"[ERROR] Invalid object type: %d\n", object_type);

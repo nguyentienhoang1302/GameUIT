@@ -17,6 +17,7 @@ piranhaplant.txt
 fireball.txt
 shadow.txt
 leaf.txt
+darkbox.txt
 
 #
 [OBJECTS]
@@ -619,7 +620,15 @@ leaf.txt
 16	1328	-46	164000
 16	1312	-46	165000
 
-#Portal 
+#DARKBOX
+22	2680	105	221000
+22	2696	105	222000
+22	2680	121	223000
+22	2696	121	224000
+
+#GIFTSELECT
+23	2688	113
+23	100	150
 
 #COIN
 4	1072	114

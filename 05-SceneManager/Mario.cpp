@@ -17,6 +17,7 @@
 #include "PlayScene.h"
 
 #include "Collision.h"
+#include "GiftSelect.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
@@ -114,6 +115,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithFPlant(e);
 	else if (dynamic_cast<CLeaf*>(e->obj))
 		OnCollisionWithLeaf(e);
+	else if (dynamic_cast<CGSelect*>(e->obj))
+		OnCollisionWithGiftSelect(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -346,6 +349,37 @@ void CMario::OnCollisionWithMushroom(LPCOLLISIONEVENT e)
 	else if (mushroom->GetType() == 2)
 	{
 		CGame::GetInstance()->life++;
+	}
+}
+
+void CMario::OnCollisionWithGiftSelect(LPCOLLISIONEVENT e)
+{
+	e->obj->Delete();
+	CGSelect* gift = (CGSelect*)(e->obj);
+
+	if (gift->GetState() == GSELECT_STATE_1)
+	{
+		if (level == MARIO_LEVEL_SMALL || level == MARIO_LEVEL_RACCOON)
+		{
+			StartUntouchable();
+			y -= 8;
+			level = MARIO_LEVEL_BIG;
+			StartUntouchable();
+		}
+	}
+	else if (gift->GetState() == GSELECT_STATE_2)
+	{
+		CGame::GetInstance()->life++;
+	}
+	else if (gift->GetState() == GSELECT_STATE_3)
+	{
+		if (level == MARIO_LEVEL_SMALL || level == MARIO_LEVEL_BIG)
+		{
+			StartUntouchable();
+			y -= 8;
+			level = MARIO_LEVEL_RACCOON;
+			StartUntouchable();
+		}
 	}
 }
 
