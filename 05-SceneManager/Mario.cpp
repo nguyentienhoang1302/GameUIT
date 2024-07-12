@@ -424,19 +424,27 @@ int CMario::GetAniIdSmall()
 			{
 				if (ax < 0)
 					aniId = ID_ANI_MARIO_SMALL_BRACE_RIGHT;
-				else if (ax == MARIO_ACCEL_RUN_X)
+				else if (vx == MARIO_RUNNING_SPEED)
+				{
 					aniId = ID_ANI_MARIO_SMALL_RUNNING_RIGHT;
-				else if (ax == MARIO_ACCEL_WALK_X)
+				}
+				else
+				{
 					aniId = ID_ANI_MARIO_SMALL_WALKING_RIGHT;
+				}
 			}
 			else // vx < 0
 			{
 				if (ax > 0)
 					aniId = ID_ANI_MARIO_SMALL_BRACE_LEFT;
-				else if (ax == -MARIO_ACCEL_RUN_X)
+				else if (vx == -MARIO_RUNNING_SPEED)
+				{
 					aniId = ID_ANI_MARIO_SMALL_RUNNING_LEFT;
-				else if (ax == -MARIO_ACCEL_WALK_X)
+				}
+				else
+				{
 					aniId = ID_ANI_MARIO_SMALL_WALKING_LEFT;
+				}
 			}
 
 	if (aniId == -1) aniId = ID_ANI_MARIO_SMALL_IDLE_RIGHT;
@@ -486,19 +494,27 @@ int CMario::GetAniIdBig()
 			{
 				if (ax < 0)
 					aniId = ID_ANI_MARIO_BRACE_RIGHT;
-				else if (ax == MARIO_ACCEL_RUN_X)
+				else if (vx == MARIO_RUNNING_SPEED)
+				{
 					aniId = ID_ANI_MARIO_RUNNING_RIGHT;
-				else if (ax == MARIO_ACCEL_WALK_X)
+				}
+				else
+				{
 					aniId = ID_ANI_MARIO_WALKING_RIGHT;
+				}
 			}
 			else // vx < 0
 			{
 				if (ax > 0)
 					aniId = ID_ANI_MARIO_BRACE_LEFT;
-				else if (ax == -MARIO_ACCEL_RUN_X)
+				else if (vx == -MARIO_RUNNING_SPEED)
+				{
 					aniId = ID_ANI_MARIO_RUNNING_LEFT;
-				else if (ax == -MARIO_ACCEL_WALK_X)
+				}
+				else
+				{
 					aniId = ID_ANI_MARIO_WALKING_LEFT;
+				}
 			}
 
 	if (aniId == -1) aniId = ID_ANI_MARIO_IDLE_RIGHT;
@@ -556,19 +572,27 @@ int CMario::GetAniIdRaccoon()
 			{
 				if (ax < 0)
 					aniId = ID_ANI_MARIO_RACCOON_BRACE_RIGHT;
-				else if (ax == MARIO_ACCEL_RUN_X)
+				else if (vx == MARIO_RUNNING_SPEED)
+				{
 					aniId = ID_ANI_MARIO_RACCOON_RUNNING_RIGHT;
-				else if (ax == MARIO_ACCEL_WALK_X)
+				}
+				else
+				{
 					aniId = ID_ANI_MARIO_RACCOON_WALKING_RIGHT;
+				}
 			}
 			else // vx < 0
 			{
 				if (ax > 0)
 					aniId = ID_ANI_MARIO_RACCOON_BRACE_LEFT;
-				else if (ax == -MARIO_ACCEL_RUN_X)
+				else if (vx == -MARIO_RUNNING_SPEED)
+				{
 					aniId = ID_ANI_MARIO_RACCOON_RUNNING_LEFT;
-				else if (ax == -MARIO_ACCEL_WALK_X)
+				}
+				else
+				{
 					aniId = ID_ANI_MARIO_RACCOON_WALKING_LEFT;
+				}
 			}
 
 	if (aniId == -1) aniId = ID_ANI_MARIO_RACCOON_IDLE_RIGHT;
